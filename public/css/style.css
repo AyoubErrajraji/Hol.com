@@ -1,0 +1,112 @@
+/*
+* === HEADER SETTINGS ===
+*/
+.navbar {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    height: auto !important;
+}
+
+.navbar-logo {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+/*
+* === BODY SETTINGS ===
+*/
+
+body {
+    background-color: #f5f8f9 !important
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -15px;
+    list-style: none;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.card-list-bar {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-list-bar .btn-filter {
+    height: 100%;
+}
+
+.card-list-bar .btn-search-switch {
+    margin: 10px;
+}
+
+.filter-list {
+    display: block;
+}
+
+.filter-list > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-list > ul > li { border-bottom: 1px solid #e6e6e6; }
+.filter-list > ul > li:last-child { border-bottom: none; }
+
+.collapsible {
+    cursor: pointer;
+    padding: 18px 20px 18px 0px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    background-color: unset;
+}
+
+.collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.active, .collapsible:hover {
+    cursor: pointer;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+/*
+* === FOOTER SETTINGS ===
+*/
+.active-color {
+    background: lawngreen;
+}
+
+.inactive-color {
+    background: red;
+}
+
