@@ -25,10 +25,10 @@ class CreateOrdersTable extends Migration
             $table->foreign('state_id')
                 ->references('id')->on('order_states')
                 ->onDelete('cascade');
-            $table->unsignedInteger('payment_id');
+            $table->unsignedInteger('address_id');
 
-            $table->foreign('payment_id')
-                ->references('id')->on('payments')
+            $table->foreign('address_id')
+                ->references('id')->on('addresses')
                 ->onDelete('cascade');
             $table->timestamps();
         });

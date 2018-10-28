@@ -3,6 +3,21 @@
 use App\User;
 use App\Role;
 use App\Permission;
+use App\Settings;
+use App\User_has_Address;
+use App\Product;
+use App\Product_Category;
+use App\WishList;
+use App\WishListItem;
+use App\Cart;
+use App\CartItem;
+use App\Order;
+use App\Address;
+use App\OrderState;
+use App\Payment;
+use App\PaymentType;
+use App\Order_has_Products;
+use App\Review;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -61,7 +76,7 @@ class DatabaseSeeder extends Seeder
                 }
 
                 // create one user for each role
-                $this->createUser( $role );
+                $this->createUser($role);
             }
 
             $this->command->info('Roles ' . $input_roles . ' added successfully');
@@ -71,36 +86,73 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Added only default user role.');
         }
 
-        DB::table('ad_types')->insert([
-            ['name' => 'Product'],
-            ['name' => 'Dienst']
-        ]);
-        $this->command->info('Types seeded.');
-
-        DB::table('ad_states')->insert([
-            ['name' => 'Geblokkeerd'],
-            ['name' => 'Afgewezen'],
-            ['name' => 'In Afwachting'],
-            ['name' => 'Actief'],
-            ['name' => 'Verlopen']
-        ]);
-        $this->command->info('Ad States seeded.');
-
-        // now lets seed some products for demo
-        factory(\App\Ad::class, 30)->create();
-        $this->command->info('Some Ad data seeded.');
-
-        // now lets seed some bids for demo
-        factory(\App\Bid::class, 5)->create();
-        $this->command->info('Some Bid data seeded.');
-
-        // now lets seed some watchlistitems for demo
-        factory(\App\WatchListItem::class, 5)->create();
-        $this->command->info('Some WatchListItem data seeded.');
-
-        foreach(User::get() as $user){
-            factory(\App\Settings::class, 1)->create(['user_id' => $user->id]);
+        //Insert settings
+        foreach(User::get() as $index => $user){
+            factory(Settings::class, 1)->create(['user_id' => $user->id]);
+            factory(Address::class, 1)->create();
+            factory(App\User_has_Address::class)->create(['user_id' => $user->id, 'address_id' => $user->id]);
         }
+
+        //Insert Products
+        factory(Product::class, 30)->create();
+        $this->command->info('Some Product data seeded.');
+
+        //Insert Categories
+        DB::table('categories')->insert([
+            ['name' => 'Category 1'],
+            ['name' => 'Category 2'],
+            ['name' => 'Category 3'],
+            ['name' => 'Category 4']
+        ]);
+        $this->command->info('Categories seeded.');
+
+        //Insert Product_Categories
+        factory(Product_Category::class, 30)->create();
+        $this->command->info('Product_Categories seeded.');
+
+
+        //Insert Wishlists
+        factory(WishList::class, 10)->create();
+        foreach (WishList::get() as $wishlist) {
+            factory(WishListItem::class, 3)->create(['wishlist_id' => $wishlist->id]);
+        }
+        $this->command->info('Some Wishlist data seeded.');
+
+        //Insert Carts
+        factory(Cart::class, 10)->create();
+        foreach (Cart::get() as $cart) {
+            factory(CartItem::class, 3)->create(['cart_id' => $cart->id]);
+        }
+        $this->command->info('Some Cart data seeded.');
+
+        //Insert Order States
+        DB::table('order_states')->insert([
+            ['name' => 'Order Geplaatst'],
+            ['name' => 'Betaling Ontvangen'],
+            ['name' => 'Bij de Bezorgdienst'],
+            ['name' => 'Ontvangen']
+        ]);
+
+        //Insert Payment Types
+        DB::table('payment_types')->insert([
+            ['name' => 'iDeal'],
+            ['name' => 'Afterpay'],
+            ['name' => 'Creditcard'],
+            ['name' => 'Airmiles']
+        ]);
+
+        //Insert Orders
+        factory(Order::class, 20)->create();
+
+        //Insert Payments and Order Product
+        foreach (Order::get() as $order) {
+            factory(Payment::class, 1)->create(['order_id' => $order->id]);
+            factory(Order_has_Products::class, 1)->create(['order_id' => $order->id]);
+        }
+        $this->command->info('Some Orders with payment seeded.');
+
+        //Insert Reviews
+        factory(Review::class, 20)->create();
 
         $this->command->warn('All done :)');
     }
@@ -113,19 +165,13 @@ class DatabaseSeeder extends Seeder
     private function createUser($role)
     {
         if ($role->name == 'Admin'){
-            $user = factory(User::class)->create(['name' => 'Lex de Willigen', 'email' => 'lex@agilepixels.com']);
-            $extraUser = factory(User::class)->create(['name' => 'Luke Hol', 'email' => 'luke@agilepixels.com']);
-            $extraUser2 = factory(User::class)->create(['name' => 'Bart de Ruiter', 'email' => 'rui@deringvanputten.nl']);
-            $extraUser->assignRole($role->name);
-            $extraUser2->assignRole($role->name);
+            factory(User::class)->create(['name' => 'Lex de Willigen', 'email' => 'lex@agilepixels.com'])->assignRole($role->name);
+            factory(User::class)->create(['name' => 'Ayoub Errajraji', 'email' => 'aerrajraji@hotmail.com'])->assignRole($role->name);
+            factory(User::class)->create(['name' => 'Dennis Bergwerff', 'email' => '0945944@hr.nl'])->assignRole($role->name);
+            factory(User::class)->create(['name' => 'Eva Wegman', 'email' => '0946319@hr.nl'])->assignRole($role->name);
+            factory(User::class)->create(['name' => 'Lars Noordijk', 'email' => 'larsnoordijk@gmail.com'])->assignRole($role->name);
         } else {
-            $user = factory(User::class)->create();
-        }
-        $user->assignRole($role->name);
-
-        if( $role->name == 'Admin' ) {
-            $this->command->info('Here is your admin details to login:');
-            $this->command->warn('Password is "secret"');
+            factory(User::class)->create()->assignRole($role->name);
         }
     }
 }
