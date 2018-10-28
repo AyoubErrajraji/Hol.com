@@ -21,6 +21,7 @@
   "dependencies": {
     "@xkeshi/vue-countdown": "^1.0.1",
     "ajv": "^6.0.0",
+    "bootstrap-vue": "^2.0.0-rc.11",
     "croppie": "^2.6.2",
     "imagemin": "^5.0.0",
     "laravel-echo": "^1.4.0",
@@ -28,6 +29,7 @@
     "pusher-js": "^4.3.1",
     "vue-progressbar": "^0.7.5",
     "vue-router": "^3.0.1",
+    "vuejs-paginate": "^2.0.1",
     "vuex": "^3.0.1"
   }
 }

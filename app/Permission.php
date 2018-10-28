@@ -18,15 +18,10 @@ class Permission extends \Spatie\Permission\Models\Permission
             'edit_roles',
             'delete_roles',
 
-            'view_ads',
-            'add_ads',
-            'edit_ads',
-            'delete_ads',
-
-            'view_approves',
-            'manage_pending',
-            'block_ad',
-            'unblock_ad',
+            'view_products',
+            'add_products',
+            'edit_products',
+            'delete_products',
         ];
     }
 }

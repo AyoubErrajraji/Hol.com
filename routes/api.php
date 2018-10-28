@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('products', 'Api\ProductApi@index');
+Route::get('product/{id}', 'Api\ProductApi@show');
+
+Route::get('categories', 'Api\CategoryApi@index');
+Route::get('category/{id}', 'Api\CategoryApi@show');
 
 Route::get('settings/{id}', 'Api\SettingsApi@show');
 Route::put('settings', 'Api\SettingsApi@update');

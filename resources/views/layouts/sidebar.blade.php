@@ -39,6 +39,13 @@
                         <i class="fa fa-chart-bar"></i> <span>Dashboard</span>
                     </a>
                 </li>
+                @can('view_products')
+                    <li id="products">
+                        <a href="{{ url('products')  }}">
+                            <i class="fa fa-paragraph"></i> <span>Products</span>
+                        </a>
+                    </li>
+                @endcan
                 @can('view_users')
                 <li id="users">
                     <a href="{{ url('users')  }}">
@@ -53,11 +60,10 @@
                     </a>
                 </li>
                 @endcan
-                <li class="header">CATEGORIES</li>
-                <li><a href="#"><i class="fa fa-circle text-red"></i> <span>Categorie 1</span></a></li>
-                <li><a href="#"><i class="fa fa-circle text-yellow"></i> <span>Categorie 2</span></a></li>
-                <li><a href="#"><i class="fa fa-circle text-aqua"></i> <span>Categorie 3</span></a></li>
+
             </ul>
+
+            <category-component />
 
         @endif
 

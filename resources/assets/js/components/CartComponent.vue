@@ -1,44 +1,34 @@
 <template>
-    <li class="dropdown tasks-menu" v-if="isProductsLoaded || true">
+
+    <li class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-shopping-cart"></i>
-            <span class="label label-danger">{{ cart.length }}</span>
+        <a class="dropdown-toggle" data-toggle="dropdown">
+            Bekijk Winkelwagen({{ inCart.length }})
         </a>
         <ul class="dropdown-menu">
-            <li class="header">Er zitten {{ cart.length }} product(en) in je winkelwagen</li>
-            <li>
-                <ul class="menu">
-                    <li v-for="item in cart"><!-- Task item -->
-                        <a>
-                            <!-- Task title and progress text -->
-                            <h3>
-                                {{ item.title }}
-                            </h3>
-                            <div>
-                                Body
-                            </div>
-                        </a>
-                    </li>
-                    <!-- end task item -->
-                </ul>
+
+            <li class="user-body" v-for="(product,index) in inCart" v-bind:key="index">
+                <div class="pull-left">
+                    <img :src="product.image" class="cart-item-image">
+                    {{ product.title }}
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-danger" @click="removeFromCart(index)">&times;</button>
+                </div>
             </li>
-            <li class="footer">
-                <a>Bekijk alle producten in je winkelwagen</a>
+            <li class="user-footer">
+                <router-link to="/cart">Bekijk hele winkelwagen</router-link>
             </li>
         </ul>
     </li>
-    <!-- Inner menu: contains the tasks -->
+
+
 </template>
 
 <script>
-    import axios from 'axios'
-    import Countdown from '@xkeshi/vue-countdown'
 
     export default {
-        name: "cart-component",
-        components: {},
-        props: ['user'],
+        name: 'cart-component',
         computed: {
             _user() {
                 if (this.user) {
@@ -47,26 +37,33 @@
                     return null
                 }
             },
-            isProductsLoaded() {
-                return this.$store.getters.productsLoaded;
-            },
-            cart() { return this.$store.getters.cart; },
+            inCart() { return this.$store.getters.inCart; },
+        },
+        mounted(){
+            this.$store.dispatch('addUser', this._user)
+                .then(() => console.log('User added to store state'));
         },
         created() {
-            this.$store.dispatch('addUser', this._user)
-                .then(() => {
-                    console.log('User added to store state');
-                });
+            axios.get('/api/products').then(result => {
+                this.addProducts(result.data);
+            }).catch((e) => {
+                this.errorMessages.push(e);
+            })
         },
         methods: {
+            addProducts(data) {
+                this.$store.dispatch('addProducts', data);
+            },
             removeFromCart(invId) {
                 this.$store.dispatch('removeFromCart', invId);
 
             },
-        }
+        },
     }
 </script>
 
 <style>
-
+    .cart-item-image {
+        height: 40px;
+    }
 </style>

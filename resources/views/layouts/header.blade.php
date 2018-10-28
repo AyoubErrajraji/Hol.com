@@ -19,13 +19,13 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
-                @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">Sign In</a></li>
-                    <li><a href="{{ route('register') }}">Sign Up</a></li>
-                @else
+                <!-- Tasks Menu -->
+                <cart-component user="{{ Auth::user() }}"></cart-component>
 
-                    <!-- Tasks Menu -->
-                    <cart-component user="{{ Auth::user() }}"></cart-component>
+                @if (Auth::guest())
+                    <li><a href="{{ route('login') }}">Log In</a></li>
+                    <li><a href="{{ route('register') }}">Registreer</a></li>
+                @else
 
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
