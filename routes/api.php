@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products', 'Api\ProductsApi@index');
+Route::get('products', 'Api\ProductApi@index');
 
 Route::get('settings/{id}', 'Api\SettingsApi@show');
 Route::put('settings', 'Api\SettingsApi@update');

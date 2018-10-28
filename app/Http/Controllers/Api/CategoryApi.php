@@ -9,7 +9,7 @@ class CategoryApi extends Controller
 {
     public function index()
     {
-        return Category::get();
+        return Category::with('products')->get();
     }
 
     public function show($id)

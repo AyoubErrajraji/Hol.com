@@ -8,7 +8,7 @@ class Product extends Model
 {
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function carts()
@@ -33,6 +33,6 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'product__category');
+        return $this->belongsToMany(Category::class, 'product__categories');
     }
 }

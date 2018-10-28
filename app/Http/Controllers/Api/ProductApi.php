@@ -10,11 +10,12 @@ class ProductApi extends Controller
 {
     public function index()
     {
-        return Product::with('user')->get();
+        return Product::with('user', 'reviews', 'categories')->where('active', 1)->get();
     }
 
     public function show($id)
     {
-        return Product::with('user')->find($id);
+        return Product::with('user', 'reviews', 'categories')->find($id);
     }
+
 }
