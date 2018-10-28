@@ -28,9 +28,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function ads()
+    public function products()
     {
-        return $this->hasMany(Ad::class);
+        return $this->hasMany(Product::class);
     }
 
     public function settings()
@@ -38,7 +38,28 @@ class User extends Authenticatable
         return $this->hasOne(Settings::class);
     }
 
-    public function watchlist(){
-        return $this->hasMany(WatchListItem::class);
+    public function wishlists()
+    {
+        return $this->hasMany(WishList::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
     }
 }
