@@ -54,7 +54,7 @@
                 })
             },
         },
-        created() {
+        mounted() {
             axios.get(`/api/category/${this.$route.params.id}`, {
             }).then(result => {
                 this.productList = result.data.products;

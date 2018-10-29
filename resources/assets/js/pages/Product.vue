@@ -12,7 +12,7 @@
 
                 <div class="col-md-6">
                     <h2>€{{ product.price }}</h2>
-                    <button class="btn-apricot" @click="addToCart(product)">Add to Cart</button>
+                    <button class="btn btn-apricot" @click="addToCart(product)">Add to Cart</button>
                 </div>
 
                 <div class="col-md-12">
@@ -50,7 +50,6 @@
                 errorMessages: []
             }
         },
-
         components:{
           ProductComponent
 
@@ -64,7 +63,6 @@
         computed: {
             inCart() { return this.$store.getters.inCart; },
         },
-
         created() {
             axios.get(`/api/product/${this.$route.params.id}`, {
             }).then(result => {
@@ -79,5 +77,12 @@
     }
 </script>
 <style>
-
+    .btn-apricot {
+        background-color: #F7882F;
+        color: white;
+    }
+    .btn-blueberry {
+        background-color: #6B7A8F;
+        color: white;
+    }
 </style>
