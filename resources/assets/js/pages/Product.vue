@@ -34,6 +34,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-12">
+            <!-- Products -->
+            <ProductComponent v-for="(product,index) in filteredList" v-bind:key="index" v-if="product.active && product.price > minPrice && product.price < maxPrice && index > paginateStart && index < paginateEnd "  :product="product"/>
+        </div>
     </div>
 </template>
 
@@ -44,6 +49,10 @@
 
     export default {
         name: 'product',
+        components:{
+            ProductComponent
+
+        },
         data(){
             return  {
                 product: [],
@@ -51,10 +60,7 @@
             }
         },
 
-        components:{
-          ProductComponent
 
-        },
 
         methods: {
             addToCart(invId) {
@@ -72,6 +78,13 @@
             }).catch((e) => {
                 this.errorMessages.push(e);
             })
+
+            // axios.get(`/api/category/${this.$route.params.id}`, {
+            // }).then(result => {
+            //     this.product = result.data;
+            // }).catch((e) => {
+            //     this.errorMessages.push(e);
+            // })
         },
 
 
