@@ -4,17 +4,17 @@
         <div class="col-md-12">
             <form>
                 <div class="col-xs-4">
-                    <input class="form-control" type="text" placeholder="Search" v-model="search"/>
+                    <input class="form-control" type="text" placeholder="Zoeken" v-model="search"/>
                 </div>
 
                     <div class="col-xs-2">
-                        Price Range
+                        Prijs Bereik
                     </div>
                     <div class="col-xs-3">
-                        <input class="form-control" type="text" placeholder="Min Price" v-model="minPrice"/>
+                        <input class="form-control" type="text" placeholder="Minimale Prijs" v-model="minPrice"/>
                     </div>
                     <div class="col-xs-3">
-                        <input class="form-control" type="text" placeholder="Max Price" v-model="maxPrice"/>
+                        <input class="form-control" type="text" placeholder="Maximale Prijs" v-model="maxPrice"/>
                     </div>
             </form>
         </div>

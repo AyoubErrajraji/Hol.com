@@ -42,30 +42,30 @@
                 @can('view_products')
                     <li id="products">
                         <a href="{{ url('products')  }}">
-                            <i class="fa fa-paragraph"></i> <span>Products</span>
+                            <i class="fa fa-paragraph"></i> <span>Producten</span>
                         </a>
                     </li>
                 @endcan
                 @can('view_users')
                 <li id="users">
                     <a href="{{ url('users')  }}">
-                        <i class="fa fa-user"></i> <span>Users</span>
+                        <i class="fa fa-user"></i> <span>Gebruikers</span>
                     </a>
                 </li>
                 @endcan
                 @can('view_roles')
                 <li id="roles">
                     <a href="{{ url('roles')  }}">
-                        <i class="fa fa-lock"></i> <span>Roles & Permissions</span>
+                        <i class="fa fa-lock"></i> <span>Rollen & Permissies</span>
                     </a>
                 </li>
                 @endcan
 
             </ul>
 
-            <category-component />
-
         @endif
+
+            <category-component />
 
     </section>
     <!-- /.sidebar -->
