@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <div class="col-xs-4">
                 <button class="btn" @click="prevPage">Vorige Pagina</button>
-                {{ paginateStart }} - {{ paginateEnd }}
+                {{ paginateStart }} - {{ paginateEnd }} van de {{ filteredList.length }} items
                 <button class="btn" @click="nextPage">Volgende Pagina</button>
             </div>
         </div>
