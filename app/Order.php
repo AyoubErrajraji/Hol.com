@@ -28,6 +28,6 @@ class Order extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'order_has__products');
+        return $this->belongsToMany(Product::class, 'order_has__products')->withPivot('amount');
     }
 }

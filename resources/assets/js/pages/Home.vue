@@ -11,10 +11,16 @@
                     <label class="control-label form-control">Prijs Bereik</label>
                 </div>
                 <div class="col-xs-3">
-                    <input class="form-control" type="text" placeholder="Minimale Prijs" v-model="minPrice"/>
+                    <div class="input-group">
+                        <span class="input-group-addon">€</span>
+                        <input class="form-control" type="text" placeholder="Minimale Prijs" v-model="minPrice"/>
+                    </div>
                 </div>
                 <div class="col-xs-3">
-                    <input class="form-control" type="text" placeholder="Maximale Prijs" v-model="maxPrice"/>
+                    <div class="input-group">
+                        <span class="input-group-addon">€</span>
+                        <input class="form-control" type="text" placeholder="Maximale Prijs" v-model="maxPrice"/>
+                    </div>
                 </div>
             </form>
         </div>
