@@ -53,14 +53,29 @@
                     return product.title.toLowerCase().includes(this.search.toLowerCase())
                 })
             },
+        }, beforeRouteUpdate(to) {
+
+            console.log(to.params.id);
+            this.id = to.params.id;
+            console.log(this.$route.params.id);
+            axios.get(`/api/category/${to.params.id}`, {
+            }).then(result => {
+                this.productList = result.data.products;
+                console.log(this.productList);
+            }).catch((e) => {
+                this.errorMessages.push(e);
+            });
         },
         created() {
             axios.get(`/api/category/${this.$route.params.id}`, {
             }).then(result => {
                 this.productList = result.data.products;
+                console.log(this.productList);
+
             }).catch((e) => {
                 this.errorMessages.push(e);
-            })
+            });
+
         },
     }
 

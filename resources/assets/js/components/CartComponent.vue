@@ -3,7 +3,7 @@
     <li class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
         <a class="dropdown-toggle" data-toggle="dropdown">
-            Bekijk Winkelwagen({{ inCart.length }})
+            <i class="fa fa-shopping-cart"></i> ({{ inCart.length }})
         </a>
         <ul class="dropdown-menu">
 
@@ -11,6 +11,7 @@
                 <div class="pull-left">
                     <img :src="product.image" class="cart-item-image">
                     {{ product.title }}
+                    <p> €{{ product.price }} </p>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-sm btn-danger" @click="removeFromCart(index)">&times;</button>
@@ -64,6 +65,7 @@
 
 <style>
     .cart-item-image {
-        height: 40px;
+        height: 100px;
+        width: 100px;
     }
 </style>
