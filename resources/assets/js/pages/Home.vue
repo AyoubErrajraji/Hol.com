@@ -7,15 +7,21 @@
                     <input class="form-control" type="text" placeholder="Zoeken" v-model="search"/>
                 </div>
 
-                    <div class="col-xs-2">
-                        Prijs Bereik
-                    </div>
-                    <div class="col-xs-3">
+                <div class="col-xs-2">
+                    <label class="control-label form-control">Prijs Bereik</label>
+                </div>
+                <div class="col-xs-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">€</span>
                         <input class="form-control" type="text" placeholder="Minimale Prijs" v-model="minPrice"/>
                     </div>
-                    <div class="col-xs-3">
+                </div>
+                <div class="col-xs-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">€</span>
                         <input class="form-control" type="text" placeholder="Maximale Prijs" v-model="maxPrice"/>
                     </div>
+                </div>
             </form>
         </div>
 
@@ -23,13 +29,15 @@
 
         <div class="col-md-12">
             <!-- Products -->
-            <ProductComponent v-for="(product,index) in filteredList" v-bind:key="index" v-if="product.active && product.price > minPrice && product.price < maxPrice && index > paginateStart && index < paginateEnd "  :product="product"/>
+            <ProductComponent v-for="(product,index) in filteredList" v-bind:key="index"
+                              v-if="product.active && product.price > minPrice && product.price < maxPrice && index >= paginateStart && index < paginateEnd "
+                              :product="product"/>
         </div>
 
         <div class="col-md-12">
             <div class="col-xs-4">
                 <button class="btn" @click="prevPage">Vorige Pagina</button>
-                {{ paginateStart }} - {{ paginateEnd }}
+                {{ paginateStart }} - {{ paginateEnd }} van de {{ filteredList.length }} items
                 <button class="btn" @click="nextPage">Volgende Pagina</button>
             </div>
         </div>
@@ -45,13 +53,13 @@
         components: {
             ProductComponent
         },
-        data(){
-            return  {
+        data() {
+            return {
                 search: '',
                 minPrice: 0,
                 maxPrice: 1000000,
                 errorMessages: [],
-                paginateStart: 0,
+                paginateStart: 1,
                 paginateEnd: 15
             }
         },
@@ -61,14 +69,16 @@
                     return product.title.toLowerCase().includes(this.search.toLowerCase())
                 })
             },
-            shopProducts() { return this.$store.getters.shopProducts; },
+            shopProducts() {
+                return this.$store.getters.shopProducts;
+            },
         },
         methods: {
-            prevPage(){
+            prevPage() {
                 this.paginateStart -= 15;
                 this.paginateEnd -= 15;
             },
-            nextPage(){
+            nextPage() {
                 this.paginateStart += 15;
                 this.paginateEnd += 15;
             }

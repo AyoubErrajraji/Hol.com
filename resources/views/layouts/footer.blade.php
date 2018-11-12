@@ -5,7 +5,7 @@
         <b>Version</b> 2.4.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="https://agilepixels.com">AgilePixels</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018 <a href="https://agilepixels.com">AgilePixels</a>.</strong>
 </footer>
 
 
