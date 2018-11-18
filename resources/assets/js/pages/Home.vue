@@ -8,7 +8,7 @@
                 </div>
 
                     <div class="col-xs-2">
-                        Prijs Bereik
+                        Prijsbereik
                     </div>
                     <div class="col-xs-3">
                         <input class="form-control" type="text" placeholder="Minimale Prijs" v-model="minPrice"/>
@@ -51,7 +51,7 @@
                 minPrice: 0,
                 maxPrice: 1000000,
                 errorMessages: [],
-                paginateStart: 0,
+                paginateStart: 1,
                 paginateEnd: 15
             }
         },

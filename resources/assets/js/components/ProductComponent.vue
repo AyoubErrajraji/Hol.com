@@ -5,11 +5,11 @@
                 <h3 class="box-title">{{ product.title }}</h3>
             </div>
             <div class="box-body text-center">
-                <img :src="product.image">
-                <p>€{{product.price}}</p>
+                <img :src="product.image ">
+                <p>€{{product.price}}       </p>
                 <hr>
-                <button class="btn btn-apricot" @click="addToCart(product)">Add to Cart</button>
-                <router-link class="btn btn-blueberry" :to="{name: 'Product', params: {id: product.id} }">Read More</router-link>
+                <button class="btn btn-apricot" @click="addToCart(product)">Winkelwagen</button>
+                <router-link class="btn btn-blueberry" :to="{name: 'Product', params: {id: product.id} }">Lees meer</router-link>
             </div>
         </div>
     </div>
