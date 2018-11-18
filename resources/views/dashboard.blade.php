@@ -213,72 +213,120 @@
         </div>
         <!-- /.row -->
 
-        <!-- TABLE: LATEST ORDERS -->
-        <div class="box box-info">
-            <div class="box-header with-border">
-                <h3 class="box-title">Laatste Bestellingen</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Laatste Bestellingen</h3>
 
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table no-margin">
+                                <thead>
+                                <tr>
+                                    <th>Bestelling ID</th>
+                                    <th>Klant</th>
+                                    <th>Status</th>
+                                    <th>Aantal Producten</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orderList as $order)
+                                    <tr>
+                                        <td><a href="#">{{ $order->id }}</a></td>
+                                        <td>{{ $order->user->name }}</td>
+                                        <td>
+                                            @if($order->state->id == 1)
+                                                <span class="label label-danger">{{ $order->state->name }}</span>
+                                            @elseif($order->state->id == 2)
+                                                    <span class="label label-warning">{{ $order->state->name }}</span>
+                                            @elseif($order->state->id == 3)
+                                                    <span class="label label-info">{{ $order->state->name }}</span>
+                                            @elseif($order->state->id == 4)
+                                                    <span class="label label-success">{{ $order->state->name }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @php
+                                                $total_products = 0;
+                                                foreach($order->products as $product){
+                                                    $total_products += $product->pivot->amount;
+                                                }
+                                            @endphp
+                                            {{ $total_products }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right" disabled>Bekijk alle bestellingen</a>
+                    </div>
+                    <!-- /.box-footer -->
                 </div>
+                <!-- /.box -->
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="table-responsive">
-                    <table class="table no-margin">
-                        <thead>
-                        <tr>
-                            <th>Bestelling ID</th>
-                            <th>Klant</th>
-                            <th>Status</th>
-                            <th>Aantal Producten</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($orderList as $order)
-                            <tr>
-                                <td><a href="#">{{ $order->id }}</a></td>
-                                <td>{{ $order->user->name }}</td>
-                                <td>
-                                    @if($order->state->id == 1)
-                                        <span class="label label-danger">{{ $order->state->name }}</span>
-                                    @elseif($order->state->id == 2)
-                                            <span class="label label-warning">{{ $order->state->name }}</span>
-                                    @elseif($order->state->id == 3)
-                                            <span class="label label-info">{{ $order->state->name }}</span>
-                                    @elseif($order->state->id == 4)
-                                            <span class="label label-success">{{ $order->state->name }}</span>
-                                    @endif
-                                </td>
-                                <td>
+            <!-- /.col -->
+
+            <div class="col-md-4">
+
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Betaalmethoden Gebruik</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="chart-responsive">
+                                    <canvas id="pieChart" height="150"></canvas>
+                                </div>
+                                <!-- ./chart-responsive -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-4">
+                                <ul class="chart-legend clearfix">
                                     @php
-                                        $total_products = 0;
-                                        foreach($order->products as $product){
-                                            $total_products += $product->pivot->amount;
-                                        }
+                                        $colors = ['text-red', 'text-green', 'text-yellow', 'text-aqua', 'text-red', 'text-red', 'text-red', 'text-red', 'text-red',];
                                     @endphp
-                                    {{ $total_products }}
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.table-responsive -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left" disabled>Place New Order</a>
-                <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right" disabled>View All Orders</a>
-            </div>
-            <!-- /.box-footer -->
-        </div>
-        <!-- /.box -->
-        </div>
-        <!-- /.col -->
 
+                                    @foreach($paymentMethods as $index => $method)
+                                        <li>
+                                            <input type="hidden" name="{{ $method->name }}" value="{{ $method->payment->count() }}" class="method">
+                                            <i class="fa fa-circle {{ $colors[$index] }}"></i>
+                                            {{ $method->name }}
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
 @endsection
 
 @push('scripts')
@@ -369,6 +417,114 @@
               // ---------------------------
               // - END MONTHLY SALES CHART -
               // ---------------------------
+
+            // -------------
+            // - PIE CHART -
+            // -------------
+
+
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+            var pieChart       = new Chart(pieChartCanvas);
+            var PieData        = [
+                {
+                    value    : 0,
+                    color    : '#f56954',
+                    highlight: '#f56954',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00a65a',
+                    highlight: '#00a65a',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#f39c12',
+                    highlight: '#f39c12',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+            ];
+
+            var methods = document.getElementsByClassName("method");
+            for (var i = 0; i < methods.length; i++) {
+                PieData[i].label = methods[i].name;
+                PieData[i].value = methods[i].value;
+            }
+
+
+            var pieOptions     = {
+                // Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke    : true,
+                // String - The colour of each segment stroke
+                segmentStrokeColor   : '#fff',
+                // Number - The width of each segment stroke
+                segmentStrokeWidth   : 1,
+                // Number - The percentage of the chart that we cut out of the middle
+                percentageInnerCutout: 50, // This is 0 for Pie charts
+                // Number - Amount of animation steps
+                animationSteps       : 100,
+                // String - Animation easing effect
+                animationEasing      : 'easeOutBounce',
+                // Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate        : true,
+                // Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale         : false,
+                // Boolean - whether to make the chart responsive to window resizing
+                responsive           : true,
+                // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                maintainAspectRatio  : false,
+              };
+              // Create pie or douhnut chart
+              // You can switch between pie and douhnut using the method below.
+              pieChart.Doughnut(PieData, pieOptions);
+              // -----------------
+              // - END PIE CHART -
+              // -----------------
         });
     </script>
 @endpush

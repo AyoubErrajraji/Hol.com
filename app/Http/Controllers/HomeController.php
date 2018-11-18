@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Ad;
 use App\Order;
+use App\Payment;
+use App\PaymentType;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
@@ -69,6 +71,8 @@ class HomeController extends Controller
 
         $orderList = Order::with('payment', 'products', 'state', 'address', 'user')->orderBy('id', 'DESC')->take(10)->get();
 
-        return view('dashboard', compact('topCards', 'monthlyRecapReport', 'orderList'));
+        $paymentMethods = PaymentType::with('payment')->get();
+
+        return view('dashboard', compact('topCards', 'monthlyRecapReport', 'orderList', 'paymentMethods'));
     }
 }

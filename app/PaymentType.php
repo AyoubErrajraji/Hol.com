@@ -8,6 +8,6 @@ class PaymentType extends Model
 {
     public function payment()
     {
-        return $this->belongsToMany(Payment::class);
+        return $this->hasMany(Payment::class, 'type_id');
     }
 }
