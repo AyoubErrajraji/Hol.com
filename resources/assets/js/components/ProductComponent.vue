@@ -6,7 +6,7 @@
             </div>
             <div class="box-body text-center">
                 <img :src="product.image ">
-                <p>€{{product.price}}       </p>
+                <p>€{{product.price}},-</p>
                 <hr>
 
                 <button class="btn btn-apricot" @click="addToCart(product)">Winkelwagen</button>
