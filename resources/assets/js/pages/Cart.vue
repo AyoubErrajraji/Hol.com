@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <h4 class="text1">Shopping cart</h4>
+        <h4 class="text1">Winkelwagen</h4>
         <div v-for="(product,index) in inCart" v-bind:key="index">
             <img :src="product.image" class="cart-item-image">
             {{ product.title }}
@@ -9,8 +9,8 @@
             <b-dropdown-divider></b-dropdown-divider>
 
         </div>
-        <router-link to="/"><b-button variant="outline-primary" class="button1">< Continue Shopping</b-button></router-link>
-        <router-link to="/checkout"><b-button variant="outline-success" class="button2"> > Continue to order</b-button></router-link>
+        <router-link to="/"><b-button variant="outline-primary" class="button1">< Verder met winkelen</b-button></router-link>
+        <router-link to="/checkout"><b-button variant="outline-success" class="button2"> > Verder met bestellen</b-button></router-link>
 
 
     </div>
@@ -56,12 +56,12 @@
 
     .button1{
 
-        margin: 300px 900px  0px 1050px;
+        margin: 300px 100px  0px 1050px;
     }
 
     .button2{
 
-        margin: 150px 900px 0px 1050px;
+        margin: 150px 100px 0px 1050px;
     }
 
     h1 {

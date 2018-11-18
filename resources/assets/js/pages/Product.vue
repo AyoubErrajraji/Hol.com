@@ -11,8 +11,10 @@
                 </div>
 
                 <div class="col-md-6">
+
                     <h2>€{{ product.price }}</h2>
-                    <button class="btn btn-apricot" @click="addToCart(product)">Add to Cart</button>
+                    <button class="btn-apricot" @click="addToCart(product)"> Winkelwagen </button>
+
                 </div>
 
                 <div class="col-md-12">
@@ -23,17 +25,22 @@
 
                 <div class="col-md-12">
                     <img src="/img/beoordeling.jpg" style="width: 400px; height: 300px;" >
+                    <h5>€{{ product.reviews }}</h5>
                 </div>
             </div>
         </div>
 
-        <div class="box box-solid ">
+        <div class="box box-solid" v-for="cat in product.categories">
             <div class="box-body">
                 <div class="col-md-12">
                     <h2>Anderen bekeken ook</h2>
+                        <!-- Products -->
+                        <ProductComponent v-for="(product,index) in cat.products" v-bind:key="index" v-if="product.active && index < 3" :product="product"/>
+
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -44,21 +51,22 @@
 
     export default {
         name: 'product',
+        components:{
+            ProductComponent
+
+        },
         data(){
             return  {
                 product: [],
+                product_category: [],
                 errorMessages: []
             }
         },
-        components:{
-          ProductComponent
-
-        },
-
         methods: {
             addToCart(invId) {
                 this.$store.dispatch('addToCart', invId);
             },
+
         },
         computed: {
             inCart() { return this.$store.getters.inCart; },
@@ -70,10 +78,9 @@
             }).catch((e) => {
                 this.errorMessages.push(e);
             })
+
+
         },
-
-
-
     }
 </script>
 <style>
