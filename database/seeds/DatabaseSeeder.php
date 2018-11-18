@@ -99,10 +99,13 @@ class DatabaseSeeder extends Seeder
 
         //Insert Categories
         DB::table('categories')->insert([
-            ['name' => 'Category 1'],
-            ['name' => 'Category 2'],
-            ['name' => 'Category 3'],
-            ['name' => 'Category 4']
+            ['name' => 'Airco\'s'],
+            ['name' => 'Desktops'],
+            ['name' => 'Koptelefoons'],
+            ['name' => 'Koelkasten'],
+            ['name' => 'Laptops'],
+            ['name' => 'Magnetrons'],
+            ['name' => 'Stofzuigers']
         ]);
         $this->command->info('Categories seeded.');
 
