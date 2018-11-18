@@ -67,6 +67,8 @@ class HomeController extends Controller
         }
         $monthlyRecapReport = json_encode($monthlyRecapReport);
 
-        return view('dashboard', compact('topCards', 'monthlyRecapReport'));
+        $orderList = Order::with('payment', 'products', 'state', 'address', 'user')->orderBy('id', 'DESC')->take(10)->get();
+
+        return view('dashboard', compact('topCards', 'monthlyRecapReport', 'orderList'));
     }
 }

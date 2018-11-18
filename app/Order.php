@@ -8,17 +8,17 @@ class Order extends Model
 {
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function address()
     {
-        return $this->hasOne(Address::class);
+        return $this->belongsTo(Address::class);
     }
 
     public function state()
     {
-        return $this->hasOne(OrderState::class);
+        return $this->belongsTo(OrderState::class);
     }
 
     public function payment()
