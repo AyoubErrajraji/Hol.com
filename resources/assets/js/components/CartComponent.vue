@@ -39,13 +39,14 @@
                 }
             },
             inCart() { return this.$store.getters.inCart; },
+            orderBy() { return this.$store.getters.orderBy; },
         },
         mounted(){
             this.$store.dispatch('addUser', this._user)
                 .then(() => console.log('User added to store state'));
         },
         created() {
-            axios.get('/api/products').then(result => {
+            axios.get(`/api/products/${this.orderBy}`).then(result => {
                 this.addProducts(result.data);
             }).catch((e) => {
                 this.errorMessages.push(e);
@@ -53,7 +54,8 @@
         },
         methods: {
             addProducts(data) {
-                this.$store.dispatch('addProducts', data);
+                this.$store.dispatch('addProducts', data)
+                .then(() => console.log('Products added to store state'));
             },
             removeFromCart(invId) {
                 this.$store.dispatch('removeFromCart', invId);

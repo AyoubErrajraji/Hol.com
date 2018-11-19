@@ -7,6 +7,17 @@
                     <input class="form-control" type="text" placeholder="Zoeken" v-model="search"/>
                 </div>
 
+                <div class="col-xs-3">
+                    <label for="Alles">Kies een filter:</label>
+                    <select id="Alles" v-model="orderBy" v-on:change="addOrderBy(this.orderBy)">
+                        <option value="id">Alles</option>
+                        <option value="title">A-Z</option>
+                        <option value="title">Z-A</option>
+                        <option value="price">prijs laag-hoog</option>
+                        <option value="price">prijs hoog-laag</option>
+                    </select>
+                </div>
+
                 <div class="col-xs-2">
                     <label class="control-label form-control">Prijs Bereik</label>
                 </div>
@@ -28,10 +39,15 @@
         <br><br>
 
         <div class="col-md-12">
-            <!-- Products -->
-            <ProductComponent v-for="(product,index) in filteredList" v-bind:key="index"
-                              v-if="product.active && product.price > minPrice && product.price < maxPrice && index >= paginateStart && index < paginateEnd "
-                              :product="product"/>
+            <div v-if="productsLoaded">
+
+
+                <!-- Products -->
+                <ProductComponent v-for="(product,index) in filteredList" v-bind:key="index"
+                                  v-if="product.active && product.price > minPrice && product.price < maxPrice && index >= paginateStart && index < paginateEnd "
+                                  :product="product"/>
+            </div>
+
         </div>
 
         <div class="col-md-12">
@@ -47,6 +63,7 @@
 
 <script>
     import ProductComponent from '../components/ProductComponent'
+    import axios from 'axios'
 
     export default {
         name: 'home',
@@ -60,10 +77,14 @@
                 maxPrice: 1000000,
                 errorMessages: [],
                 paginateStart: 1,
-                paginateEnd: 15
+                paginateEnd: 15,
+                orderBy: 'id'
             }
         },
         computed: {
+            productsLoaded() {
+                return this.$store.getters.shopProductsLoaded;
+            },
             filteredList() {
                 return this.shopProducts.filter(product => {
                     return product.title.toLowerCase().includes(this.search.toLowerCase())
@@ -81,7 +102,16 @@
             nextPage() {
                 this.paginateStart += 15;
                 this.paginateEnd += 15;
-            }
+            },
+            addOrderBy(orderby) {
+                this.$store.dispatch('addOrderBy', orderby);
+
+                axios.get(`/api/products/${this.orderBy}`).then(result => {
+                    this.addProducts(result.data);
+                }).catch((e) => {
+                    this.errorMessages.push(e);
+                })
+            },
         }
     }
 </script>
