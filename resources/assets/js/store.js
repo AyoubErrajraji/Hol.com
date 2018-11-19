@@ -14,7 +14,7 @@ export default new Vuex.Store({
         order: 'asc',
     },
     getters: {
-        shopProducts: state1 => state.shopProducts,
+        shopProducts: state => state.shopProducts,
         shopProductsLoaded: state => state.shopProductsLoaded,
         inCart: state => state.inCart,
         orderBy: state => state.orderBy,
