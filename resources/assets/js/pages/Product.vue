@@ -12,7 +12,7 @@
 
                 <div class="col-md-6">
 
-                    <h2>€{{ product.price }}</h2>
+                    <h2>€{{ product.price }},-</h2>
                     <button class="btn-apricot" @click="addToCart(product)"> Winkelwagen </button>
 
                 </div>
