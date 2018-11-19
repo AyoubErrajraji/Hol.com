@@ -8,10 +8,9 @@ use App\Http\Controllers\Controller;
 
 class ProductApi extends Controller
 {
-    public function index($orderBy)
+    public function index($orderBy, $order = 'asc')
     {
-        return Product::with('user', 'reviews', 'categories')->where('active', 1)->orderBy($orderBy, 'DESC')->get();
-
+        return Product::with('user', 'reviews', 'categories')->where('active', 1)->orderBy($orderBy, $order)->get();
     }
 
     public function show($id)

@@ -11,12 +11,14 @@ export default new Vuex.Store({
         categories: [],
         user: null,
         orderBy: 'id',
+        order: 'asc',
     },
     getters: {
-        shopProducts: state => state.shopProducts,
+        shopProducts: state1 => state.shopProducts,
         shopProductsLoaded: state => state.shopProductsLoaded,
         inCart: state => state.inCart,
         orderBy: state => state.orderBy,
+        order: state => state.order,
         categories: state => state.categories,
         user: state => {
             return state.user;
@@ -29,6 +31,7 @@ export default new Vuex.Store({
         ADD_PRODUCTS(state, products) { state.shopProducts = products; state.shopProductsLoaded= true;},
         ADD_USER(state, user) { state.user = user; },
         ADD_ORDERBY(state, orderby) { state.orderBy = orderby; },
+        ADD_ORDER(state, order) { state.order = order; },
     },
     actions: {
         addToCart(context, invProduct) {
@@ -48,6 +51,9 @@ export default new Vuex.Store({
         },
         addOrderBy(context, orderby) {
             context.commit('ADD_ORDERBY', orderby);
+        },
+        addOrder(context, order) {
+            context.commit('ADD_ORDER', order);
         },
     }
 });

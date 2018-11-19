@@ -9,12 +9,12 @@
 
                 <div class="col-xs-3">
                     <label for="Alles">Kies een filter:</label>
-                    <select id="Alles" v-model="orderBy" v-on:change="addOrderBy(this.orderBy)">
-                        <option value="id">Alles</option>
-                        <option value="title">A-Z</option>
-                        <option value="title">Z-A</option>
-                        <option value="price">prijs laag-hoog</option>
-                        <option value="price">prijs hoog-laag</option>
+                    <select id="Alles" v-model="order" v-on:change="addOrderBy(this.order)">
+                        <option value='{"orderBy": "id","order": "asc"}'>Alles</option>
+                        <option value='{"orderBy": "title","order": "asc"}'>A-Z</option>
+                        <option value='{"orderBy": "title","order": "desc"}'>Z-A</option>
+                        <option value='{"orderBy": "price","order": "asc"}'>prijs laag-hoog</option>
+                        <option value='{"orderBy": "price","order": "desc"}'>prijs hoog-laag</option>
                     </select>
                 </div>
 
@@ -78,7 +78,7 @@
                 errorMessages: [],
                 paginateStart: 1,
                 paginateEnd: 15,
-                orderBy: 'id'
+                order: 'id'
             }
         },
         computed: {
@@ -95,6 +95,10 @@
             },
         },
         methods: {
+            addProducts(data) {
+                this.$store.dispatch('addProducts', data)
+                    .then(() => console.log('Products added to store state'));
+            },
             prevPage() {
                 this.paginateStart -= 15;
                 this.paginateEnd -= 15;
@@ -104,12 +108,16 @@
                 this.paginateEnd += 15;
             },
             addOrderBy(orderby) {
-                this.$store.dispatch('addOrderBy', orderby);
+                console.log(this.order);
+                let order = JSON.parse(this.order);
+                this.$store.dispatch('addOrderBy', order.orderBy);
 
-                axios.get(`/api/products/${this.orderBy}`).then(result => {
+                axios.get(`/api/products/${order.orderBy}/${order.order}`).then(result => {
                     this.addProducts(result.data);
+
                 }).catch((e) => {
                     this.errorMessages.push(e);
+                    console.error(e.message);
                 })
             },
         }
