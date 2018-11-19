@@ -84,7 +84,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Monthly Recap Report</h3>
+                        <h3 class="box-title">Maandelijkse Orders</h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <p class="text-center">
-                                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                                    <strong>Verkoop: 1 Jan, 2018 - 31 Dec, 2018</strong>
                                 </p>
 
                                 <div class="chart">
@@ -120,42 +120,42 @@
                             <!-- /.col -->
                             <div class="col-md-4">
                                 <p class="text-center">
-                                    <strong>Goal Completion</strong>
+                                    <strong>Doelen Voltooiing</strong>
                                 </p>
 
                                 <div class="progress-group">
-                                    <span class="progress-text">Add Products to Cart</span>
-                                    <span class="progress-number"><b>160</b>/200</span>
+                                    <span class="progress-text">Producten toevoegen aan winkelwagen</span>
+                                    <span class="progress-number"><b>0</b>/200</span>
 
                                     <div class="progress sm">
-                                        <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                                        <div class="progress-bar progress-bar-aqua" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <!-- /.progress-group -->
                                 <div class="progress-group">
-                                    <span class="progress-text">Complete Purchase</span>
-                                    <span class="progress-number"><b>310</b>/400</span>
+                                    <span class="progress-text">Betaalde Orders</span>
+                                    <span class="progress-number"><b>0</b>/400</span>
 
                                     <div class="progress sm">
-                                        <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                                        <div class="progress-bar progress-bar-red" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <!-- /.progress-group -->
                                 <div class="progress-group">
                                     <span class="progress-text">Visit Premium Page</span>
-                                    <span class="progress-number"><b>480</b>/800</span>
+                                    <span class="progress-number"><b>0</b>/800</span>
 
                                     <div class="progress sm">
-                                        <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                        <div class="progress-bar progress-bar-green" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <!-- /.progress-group -->
                                 <div class="progress-group">
                                     <span class="progress-text">Send Inquiries</span>
-                                    <span class="progress-number"><b>250</b>/500</span>
+                                    <span class="progress-number"><b>0</b>/500</span>
 
                                     <div class="progress sm">
-                                        <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                                        <div class="progress-bar progress-bar-yellow" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <!-- /.progress-group -->
@@ -169,36 +169,36 @@
                         <div class="row">
                             <div class="col-sm-3 col-xs-6">
                                 <div class="description-block border-right">
-                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                                    <h5 class="description-header">$35,210.43</h5>
-                                    <span class="description-text">TOTAL REVENUE</span>
+                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> -%</span>
+                                    <h5 class="description-header">€{{ number_format($topCards[3], 2, ',', '.') }}</h5>
+                                    <span class="description-text">TOTALE OPBRENGST</span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-3 col-xs-6">
                                 <div class="description-block border-right">
-                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                                    <h5 class="description-header">$10,390.90</h5>
-                                    <span class="description-text">TOTAL COST</span>
+                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> -%</span>
+                                    <h5 class="description-header"></h5>
+                                    <span class="description-text"></span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-3 col-xs-6">
                                 <div class="description-block border-right">
-                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                                    <h5 class="description-header">$24,813.53</h5>
-                                    <span class="description-text">TOTAL PROFIT</span>
+                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> -%</span>
+                                    <h5 class="description-header"></h5>
+                                    <span class="description-text"></span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-3 col-xs-6">
                                 <div class="description-block">
-                                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                                    <h5 class="description-header">1200</h5>
-                                    <span class="description-text">GOAL COMPLETIONS</span>
+                                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> -%</span>
+                                    <h5 class="description-header"></h5>
+                                    <span class="description-text"></span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
@@ -213,6 +213,120 @@
         </div>
         <!-- /.row -->
 
+        <div class="row">
+            <div class="col-md-8">
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Laatste Bestellingen</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table no-margin">
+                                <thead>
+                                <tr>
+                                    <th>Bestelling ID</th>
+                                    <th>Klant</th>
+                                    <th>Status</th>
+                                    <th>Aantal Producten</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orderList as $order)
+                                    <tr>
+                                        <td><a href="#">{{ $order->id }}</a></td>
+                                        <td>{{ $order->user->name }}</td>
+                                        <td>
+                                            @if($order->state->id == 1)
+                                                <span class="label label-danger">{{ $order->state->name }}</span>
+                                            @elseif($order->state->id == 2)
+                                                    <span class="label label-warning">{{ $order->state->name }}</span>
+                                            @elseif($order->state->id == 3)
+                                                    <span class="label label-info">{{ $order->state->name }}</span>
+                                            @elseif($order->state->id == 4)
+                                                    <span class="label label-success">{{ $order->state->name }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @php
+                                                $total_products = 0;
+                                                foreach($order->products as $product){
+                                                    $total_products += $product->pivot->amount;
+                                                }
+                                            @endphp
+                                            {{ $total_products }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right" disabled>Bekijk alle bestellingen</a>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-4">
+
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Betaalmethoden Gebruik</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="chart-responsive">
+                                    <canvas id="pieChart" height="150"></canvas>
+                                </div>
+                                <!-- ./chart-responsive -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-4">
+                                <ul class="chart-legend clearfix">
+                                    @php
+                                        $colors = ['text-red', 'text-green', 'text-yellow', 'text-aqua', 'text-red', 'text-red', 'text-red', 'text-red', 'text-red',];
+                                    @endphp
+
+                                    @foreach($paymentMethods as $index => $method)
+                                        <li>
+                                            <input type="hidden" name="{{ $method->name }}" value="{{ $method->payment->count() }}" class="method">
+                                            <i class="fa fa-circle {{ $colors[$index] }}"></i>
+                                            {{ $method->name }}
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
 @endsection
 
 @push('scripts')
@@ -237,7 +351,7 @@
             // - MONTHLY SALES CHART -
             // -----------------------
 
-            var myChartData = document.getElementById("monthly-recap-report-data").textContent;
+            var myChartData = new Array(document.getElementById("monthly-recap-report-data").innerHTML);
 
             // Get context with jQuery - using jQuery's .get() method.
             var salesChartCanvas = $('#salesChart').get(0).getContext('2d');
@@ -255,7 +369,7 @@
                         pointStrokeColor    : 'rgba(60,141,188,1)',
                         pointHighlightFill  : '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data                : document.getElementById("monthly-recap-report-data").textContent
+                        data                : [1,1,1,1,1,1,1,2,2,4,7],
                     }
                 ]
             };
@@ -303,6 +417,114 @@
               // ---------------------------
               // - END MONTHLY SALES CHART -
               // ---------------------------
+
+            // -------------
+            // - PIE CHART -
+            // -------------
+
+
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+            var pieChart       = new Chart(pieChartCanvas);
+            var PieData        = [
+                {
+                    value    : 0,
+                    color    : '#f56954',
+                    highlight: '#f56954',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00a65a',
+                    highlight: '#00a65a',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#f39c12',
+                    highlight: '#f39c12',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+                {
+                    value    : 0,
+                    color    : '#00c0ef',
+                    highlight: '#00c0ef',
+                    label    : 'empty'
+                },
+            ];
+
+            var methods = document.getElementsByClassName("method");
+            for (var i = 0; i < methods.length; i++) {
+                PieData[i].label = methods[i].name;
+                PieData[i].value = methods[i].value;
+            }
+
+
+            var pieOptions     = {
+                // Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke    : true,
+                // String - The colour of each segment stroke
+                segmentStrokeColor   : '#fff',
+                // Number - The width of each segment stroke
+                segmentStrokeWidth   : 1,
+                // Number - The percentage of the chart that we cut out of the middle
+                percentageInnerCutout: 50, // This is 0 for Pie charts
+                // Number - Amount of animation steps
+                animationSteps       : 100,
+                // String - Animation easing effect
+                animationEasing      : 'easeOutBounce',
+                // Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate        : true,
+                // Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale         : false,
+                // Boolean - whether to make the chart responsive to window resizing
+                responsive           : true,
+                // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                maintainAspectRatio  : false,
+              };
+              // Create pie or douhnut chart
+              // You can switch between pie and douhnut using the method below.
+              pieChart.Doughnut(PieData, pieOptions);
+              // -----------------
+              // - END PIE CHART -
+              // -----------------
         });
     </script>
 @endpush

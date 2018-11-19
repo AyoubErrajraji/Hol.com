@@ -15,7 +15,7 @@ class ProductApi extends Controller
 
     public function show($id)
     {
-        return Product::with('user', 'reviews', 'categories')->find($id);
+        return Product::with('user', 'reviews', 'categories', 'categories.products')->find($id);
     }
 
 }

@@ -5,9 +5,9 @@
             <template slot="button-content">
                 <em>{{ user.name }}</em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#">Profiel</b-dropdown-item>
 
-            <b-dropdown-item href="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Signout</b-dropdown-item>
+            <b-dropdown-item href="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Uitloggen</b-dropdown-item>
 
         </b-nav-item-dropdown>
         <b-nav-item v-else href="sign-in">Login</b-nav-item>
