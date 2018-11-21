@@ -15,5 +15,6 @@ class CategoryApi extends Controller
     public function show($id)
     {
         return Category::with('products')->find($id);
+
     }
 }
