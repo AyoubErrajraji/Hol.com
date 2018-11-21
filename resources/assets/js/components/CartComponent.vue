@@ -11,7 +11,7 @@
                 <div class="pull-left">
                     <img :src="product.image" class="cart-item-image">
                     {{ product.title }}
-                    <p><b> €{{ product.price }} </b></p>
+                    <p><b> €{{ product.price + ",-" }} </b></p>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-sm btn-danger"v-on:click="inCart.splice(index, 1)">Verwijder product</button>
@@ -49,7 +49,7 @@
 
             total() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return sum + item.price
+                    return Math.round(sum + item.price)
                 }, 0)
             },
         },

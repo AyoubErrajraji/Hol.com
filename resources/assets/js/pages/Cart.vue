@@ -5,7 +5,7 @@
         <div v-for="(product,index) in inCart" v-bind:key="index">
             <h4><b>{{product.title}}</b></h4>
 
-             <h4><b>Prijs: €{{product.price}}</b></h4>
+             <h4><b>Prijs: €{{product.price + ",-"}}</b></h4>
 
             <ul class="items">
                 <li class="item">
@@ -30,8 +30,8 @@
 
         <h3 class="cart-line">
             Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
-            BTW(21%): €{{BTW}} <span class="cart-price cart-total"></span>
-            Totaal: €{{totalBTW}}<span class="cart-price cart-total"></span>
+            BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span>
+            Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span>
         </h3>
 
         <router-link to="/"><button class="button1">< Verder met winkelen</button></router-link>
