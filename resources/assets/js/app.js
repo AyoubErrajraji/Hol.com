@@ -42,9 +42,10 @@ const app = new Vue({
     data(){
         return  {
             categories: [],
-            errorMessages: []
+            errorMessages: [],
         }
     },
+
     created() {
         axios.get(`/api/categories`, {
         }).then(result => {
