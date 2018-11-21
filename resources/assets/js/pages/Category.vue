@@ -116,7 +116,8 @@
             nextPage() {
                 this.paginateStart += 15;
                 this.paginateEnd += 15;
-            }
+            },
+
         }
     }
 

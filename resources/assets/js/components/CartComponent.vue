@@ -11,13 +11,15 @@
                 <div class="pull-left">
                     <img :src="product.image" class="cart-item-image">
                     {{ product.title }}
-                    <p> €{{ product.price }} </p>
+                    <p><b> €{{ product.price }} </b></p>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-sm btn-danger" @click="removeFromCart(index)">&times;</button>
+                    <button class="btn btn-sm btn-danger"v-on:click="inCart.splice(index, 1)">Verwijder product</button>
                 </div>
+
             </li>
             <li class="user-footer">
+                Totaal: €<b>{{total}},-</b>
                 <router-link to="/cart">Bekijk hele winkelwagen</router-link>
             </li>
         </ul>
@@ -38,10 +40,20 @@
                     return null
                 }
             },
-            inCart() { return this.$store.getters.inCart; },
-            orderBy() { return this.$store.getters.orderBy; },
+            inCart() {
+                return this.$store.getters.inCart;
+            },
+            orderBy() {
+                return this.$store.getters.orderBy;
+            },
+
+            total() {
+                return this.$store.getters.inCart.reduce(function (sum, item) {
+                    return sum + item.price
+                }, 0)
+            },
         },
-        mounted(){
+        mounted() {
             this.$store.dispatch('addUser', this._user)
                 .then(() => console.log('User added to store state'));
         },
@@ -58,7 +70,8 @@
                 .then(() => console.log('Products added to store state'));
             },
             removeFromCart(invId) {
-                this.$store.dispatch('removeFromCart', invId);
+                this.$store.dispatch('removeFromCart', invId)
+                .then(() => console.log('Cart has been removed from the store state'));
 
             },
         },
