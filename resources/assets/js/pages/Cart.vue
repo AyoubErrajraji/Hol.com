@@ -53,20 +53,20 @@
         computed: {
             totalBTW() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return sum + item.price + item.price * (0.21)
+                    return Math.round(sum + item.price + item.price * (0.21))
                 },0)
             },
 
             BTW(){
                 return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return sum + item.price * (0.21)
+                    return Math.round(sum + item.price * (0.21))
 
                 },0)
             },
 
             Subtotal() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return sum + item.price
+                    return Math.round(sum + item.price)
                 }, 0)
             },
 
