@@ -42,7 +42,7 @@ const app = new Vue({
     data(){
         return  {
             categories: [],
-            errorMessages: [],
+            errorMessages: []
         }
     },
 

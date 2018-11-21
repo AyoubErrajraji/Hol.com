@@ -17,7 +17,7 @@
                             <b>Aantal:</b>
                             <input type = "text" placeholder="1" class="item-quantity">
                             <span class="item-price"></span>
-                            <button class="btn btn-danger" @click="removeFromCart(index)">&times; Verwijder product</button>
+                            <button class="btn btn-sm btn-danger"v-on:click="inCart.splice(index, 1)">Verwijder product</button>
 
                         </div>
                     </div>
@@ -32,11 +32,10 @@
             Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
             BTW(21%): €{{BTW}} <span class="cart-price cart-total"></span>
             Totaal: €{{totalBTW}}<span class="cart-price cart-total"></span>
-
         </h3>
 
-        <router-link to="/"><b-button variant="outline-primary" class="button1">< Verder met winkelen</b-button></router-link>
-        <router-link to="/checkout"><b-button variant="outline-success" class="button2"> > Verder met bestellen</b-button></router-link>
+        <router-link to="/"><button class="button1">< Verder met winkelen</button></router-link>
+        <router-link to="/checkout"><button  class="button2"> > Verder met bestellen</button></router-link>
 
     </div>
 </template>
@@ -90,14 +89,14 @@
             },
 
             methods: {
+                addProducts(data) {
+                    this.$store.dispatch('addProducts', data)
+                        .then(() => console.log('Products added to store state'));
+                },
                 removeFromCart(invId) {
                     this.$store.dispatch('removeFromCart', invId);
 
                 },
-                addProducts(data) {
-                    this.$store.dispatch('addProducts', data)
-                        .then(() => console.log('Products added to store state'));
-                }
             }
         }
     }
@@ -242,7 +241,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 20px 100px  0px 1350px;
+        margin: 15px 100px  0px 1250px;
     }
     .button1:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -259,7 +258,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 10px 100px 0px 1350px;
+        margin: 10px 100px 0px 1250px;
     }
 
 </style>
