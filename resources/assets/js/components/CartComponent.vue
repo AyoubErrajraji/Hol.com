@@ -11,13 +11,14 @@
                 <div class="pull-left">
                     <img :src="product.image" class="cart-item-image">
                     {{ product.title }}
-                    <p> €{{ product.price }} </p>
+                    <p><b> €{{ product.price }} </b></p>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-sm btn-danger" @click="removeFromCart(index)">&times;</button>
                 </div>
             </li>
             <li class="user-footer">
+                Totaal: €<b>{{total}},-</b>
                 <router-link to="/cart">Bekijk hele winkelwagen</router-link>
             </li>
         </ul>
@@ -37,6 +38,11 @@
                 } else {
                     return null
                 }
+            },
+            total() {
+                return this.$store.getters.inCart.reduce(function (sum, item) {
+                    return sum + item.price
+                }, 0)
             },
             inCart() { return this.$store.getters.inCart; },
             orderBy() { return this.$store.getters.orderBy; },

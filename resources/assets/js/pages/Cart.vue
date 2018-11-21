@@ -29,9 +29,9 @@
         </div>
 
         <h3 class="cart-line">
-            Subtotaal:{{Subtotal}} <span class="cart-price cart-total"></span>
-            BTW(21%):{{BTW}} <span class="cart-price cart-total"></span>
-            Totaal: {{totalBTW}}<span class="cart-price cart-total"></span>
+            Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
+            BTW(21%): €{{BTW}} <span class="cart-price cart-total"></span>
+            Totaal: €{{totalBTW}}<span class="cart-price cart-total"></span>
 
         </h3>
 
