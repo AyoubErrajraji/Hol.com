@@ -23,6 +23,7 @@ Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
     Route::resource('products', 'ProductController');
+    Route::resource('orders', 'OrderController');
 });
 
 Route::get('/{vue_capture?}', function () {

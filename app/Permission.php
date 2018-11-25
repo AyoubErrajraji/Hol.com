@@ -22,6 +22,11 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_products',
             'edit_products',
             'delete_products',
+
+            'view_orders',
+            'add_orders',
+            'edit_orders',
+            'delete_orders',
         ];
     }
 }
