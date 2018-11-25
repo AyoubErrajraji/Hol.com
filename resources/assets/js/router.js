@@ -8,6 +8,7 @@ import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import Payment from './pages/Payment'
 import NotFound from './pages/NotFound'
+import Succes from './pages/Succes'
 
 Vue.use(Router);
 
@@ -51,6 +52,13 @@ export default new Router({
             component: Payment,
             meta: {description: 'Payment'}
         },
+        {
+            path: '/succes',
+            name: 'Succes',
+            component: Succes,
+            meta: {description: 'Succes'}
+        },
+
         {
             path: '*',
             name: 'NotFound',

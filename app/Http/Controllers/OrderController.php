@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -35,7 +36,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $products = Cart::content();
+
+        // iterate through the products and store them into the database
+        foreach($products as $product){
+            Order::create([
+                'product_id' => $product->id,
+                'customer_id' => auth()->id(),
+            ]);
+        }
+
+        return back();
     }
 
     /**

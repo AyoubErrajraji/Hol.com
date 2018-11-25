@@ -5,7 +5,7 @@
         <div v-for="(product,index) in inCart" v-bind:key="index">
             <h4><b>{{product.title}}</b></h4>
 
-             <h4><b>Prijs: €{{product.price}}</b></h4>
+             <h4><b>Prijs: €{{product.price + ",-"}}</b></h4>
 
             <ul class="items">
                 <li class="item">
@@ -30,14 +30,15 @@
 
         <h3 class="cart-line">
             Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
-            BTW(21%): €{{BTW}} <span class="cart-price cart-total"></span>
-            Totaal: €{{totalBTW}}<span class="cart-price cart-total"></span>
+            BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span>
+            Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span>
         </h3>
 
         <router-link to="/"><button class="button1">< Verder met winkelen</button></router-link>
         <router-link to="/checkout"><button  class="button2"> > Verder met bestellen</button></router-link>
 
     </div>
+
 </template>
 
 <script>
@@ -54,6 +55,7 @@
             totalBTW() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
                     return Math.round(sum + item.price + item.price * (0.21))
+
                 },0)
             },
 
@@ -67,6 +69,7 @@
             Subtotal() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
                     return Math.round(sum + item.price)
+
                 }, 0)
             },
 
@@ -76,10 +79,12 @@
             user() {
                 return this.$store.getters.user
             },
+
             mounted() {
                 this.$store.dispatch('addUser', this._user)
                     .then(() => console.log('User added to store state'));
             },
+
             created() {
                 axios.get(`/api/products/${this.orderBy}`).then(result => {
                     this.addProducts(result.data);
