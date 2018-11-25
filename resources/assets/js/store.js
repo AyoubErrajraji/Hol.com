@@ -28,7 +28,6 @@ export default new Vuex.Store({
     },
     mutations: {
         ADD_TO_CART(state, invProduct) { state.inCart.push(invProduct); },
-        SAVE_TO_CART(state, SaveProduct) {state.inCart.}
         REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
         ADD_CATEGORIES(state, categories) { state.categories = categories; },
         ADD_PRODUCTS(state, products) { state.shopProducts = products; state.shopProductsLoaded= true;},
