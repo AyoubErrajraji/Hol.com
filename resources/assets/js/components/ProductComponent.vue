@@ -3,6 +3,7 @@
         <div class="box box-solid ">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ product.title }}</h3>
+                <h5 class="box-title">{{ product.categories }}</h5>
             </div>
             <div class="box-body text-center">
                 <img :src="product.image ">
@@ -37,6 +38,11 @@
             addToCart(invId) {
                 this.$store.dispatch('addToCart', invId);
             },
+
+            //@foreach($products as $product) {{ product.categories.name }} @endforeach
+
+
+
         },
         computed: {
             inCart() {
