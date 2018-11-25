@@ -20,6 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('products/{orderBy}/{order?}', 'Api\ProductApi@index');
 Route::get('product/{id}', 'Api\ProductApi@show');
 
+Route::get('payment/test', 'Api\PaymentApi@create');
+
+Route::get('order/{id}', 'Api\OrderApi@store');
+
 Route::get('categories', 'Api\CategoryApi@index');
 Route::get('category/{id}', 'Api\CategoryApi@show');
 

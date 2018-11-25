@@ -73,6 +73,7 @@
                 this.$store.dispatch('removeFromCart', invId)
                 .then(() => console.log('Cart has been removed from the store state'));
 
+
             },
         },
     }

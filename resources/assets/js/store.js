@@ -12,10 +12,12 @@ export default new Vuex.Store({
         user: null,
         orderBy: 'id',
         order: 'asc',
+
     },
     getters: {
         shopProducts: state => state.shopProducts,
         shopProductsLoaded: state => state.shopProductsLoaded,
+        payments: state => state.payments,
         inCart: state => state.inCart,
         orderBy: state => state.orderBy,
         order: state => state.order,
@@ -26,12 +28,14 @@ export default new Vuex.Store({
     },
     mutations: {
         ADD_TO_CART(state, invProduct) { state.inCart.push(invProduct); },
+        SAVE_TO_CART(state, SaveProduct) {state.inCart.}
         REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
         ADD_CATEGORIES(state, categories) { state.categories = categories; },
         ADD_PRODUCTS(state, products) { state.shopProducts = products; state.shopProductsLoaded= true;},
         ADD_USER(state, user) { state.user = user; },
         ADD_ORDERBY(state, orderby) { state.orderBy = orderby; },
         ADD_ORDER(state, order) { state.order = order; },
+        ADD_PAYMENT(state, payments) {state.payments = payments; }
     },
     actions: {
         addToCart(context, invProduct) {
@@ -54,6 +58,9 @@ export default new Vuex.Store({
         },
         addOrder(context, order) {
             context.commit('ADD_ORDER', order);
+        },
+        addPayment(context, payments) {
+            context.commit('ADD_PAYMENT', payments);
         },
     }
 });
