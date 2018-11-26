@@ -30,52 +30,52 @@
 
 <script>
 
-    export default {
-        name: 'cart-component',
-        computed: {
-            _user() {
-                if (this.user) {
-                    return JSON.parse(this.user)
-                } else {
-                    return null
-                }
-            },
-            inCart() {
-                return this.$store.getters.inCart;
-            },
-            orderBy() {
-                return this.$store.getters.orderBy;
-            },
+        export default {
+            name: 'cart-component',
+            computed: {
+                _user() {
+                    if (this.user) {
+                        return JSON.parse(this.user)
+                    } else {
+                        return null
+                    }
+                },
+                inCart() {
+                    return this.$store.getters.inCart;
+                },
+                orderBy() {
+                    return this.$store.getters.orderBy;
+                },
 
-            total() {
-                return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return Math.round(sum + item.price)
-                }, 0)
+                total() {
+                    return this.$store.getters.inCart.reduce(function (sum, item) {
+                        return Math.round(sum + item.price)
+                    }, 0)
+                },
             },
-        },
-        mounted() {
-            this.$store.dispatch('addUser', this._user)
-                .then(() => console.log('User added to store state'));
-        },
-        created() {
-            axios.get(`/api/products/${this.orderBy}`).then(result => {
-                this.addProducts(result.data);
-            }).catch((e) => {
-                this.errorMessages.push(e);
-            })
-        },
-        methods: {
-            addProducts(data) {
-                this.$store.dispatch('addProducts', data)
-                .then(() => console.log('Products added to store state'));
+            mounted() {
+                this.$store.dispatch('addUser', this._user)
+                    .then(() => console.log('User added to store state'));
             },
-            removeFromCart(invId) {
-                this.$store.dispatch('removeFromCart', invId)
-                .then(() => console.log('Cart has been removed from the store state'));
+            created() {
+                axios.get(`/api/products/${this.orderBy}`).then(result => {
+                    this.addProducts(result.data);
+                }).catch((e) => {
+                    this.errorMessages.push(e);
+                })
+            },
+            methods: {
+                addProducts(data) {
+                    this.$store.dispatch('addProducts', data)
+                        .then(() => console.log('Products added to store state'));
+                },
+                removeFromCart(invId) {
+                    this.$store.dispatch('removeFromCart', invId)
+                        .then(() => console.log('Cart has been removed from the store state'));
 
 
+                },
             },
-        },
     }
 </script>
 

@@ -19,6 +19,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         name: "ProductComponent",
         props: {
@@ -35,7 +37,17 @@
         },
         methods: {
             addToCart(invId) {
-                this.$store.dispatch('addToCart', invId);
+                this.$store.dispatch('addToCart', invId)
+            },
+
+            create() {
+                axios.post(`/api/CartItem/`),{
+                    userId: user_id,
+                    cartId: cart_id,
+                    completed: false
+                }.catch((e) => {
+                    this.errorMessages.push(e);
+                })
             },
         },
         computed: {
