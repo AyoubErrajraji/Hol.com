@@ -24,7 +24,7 @@ Route::get('product/{id}', 'Api\ProductApi@show');
 
 Route::get('payment/test', 'Api\PaymentApi@create');
 
-Route::post('CartItem{request}', 'Api\CartApi@store');
+Route::post('cartitem', 'Api\CartApi@store');
 
 Route::get('categories', 'Api\CategoryApi@index');
 Route::get('category/{id}', 'Api\CategoryApi@show');
