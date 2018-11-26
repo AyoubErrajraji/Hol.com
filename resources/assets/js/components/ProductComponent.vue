@@ -1,12 +1,12 @@
 <template>
     <div class="col-md-4">
-        <div class="box box-solid ">
+        <div class="box box-solid " style="width: 450px; height: 450px;">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ product.title }}</h3>
-                <h5 class="box-title">{{ product.categories }}</h5>
+                <h4 v-for="category in product.categories"> {{ category.name }} </h4>
             </div>
             <div class="box-body text-center">
-                <img :src="product.image ">
+                <img :src="product.image " style="width: 200px; height: 250px;">
                 <p>€{{product.price}},-</p>
                 <hr>
 

@@ -38,6 +38,7 @@
         <router-link to="/checkout"><button  class="button2"> > Verder met bestellen</button></router-link>
 
     </div>
+
 </template>
 
 <script>
@@ -54,6 +55,7 @@
             totalBTW() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
                     return Math.round(sum + item.price + item.price * (0.21))
+
                 },0)
             },
 
@@ -67,6 +69,7 @@
             Subtotal() {
                 return this.$store.getters.inCart.reduce(function (sum, item) {
                     return Math.round(sum + item.price)
+
                 }, 0)
             },
 
@@ -76,10 +79,12 @@
             user() {
                 return this.$store.getters.user
             },
+
             mounted() {
                 this.$store.dispatch('addUser', this._user)
                     .then(() => console.log('User added to store state'));
             },
+
             created() {
                 axios.get(`/api/products/${this.orderBy}`).then(result => {
                     this.addProducts(result.data);

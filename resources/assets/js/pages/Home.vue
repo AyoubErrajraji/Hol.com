@@ -70,6 +70,7 @@
         components: {
             ProductComponent
         },
+
         data() {
             return {
                 search: '',
@@ -93,6 +94,7 @@
             shopProducts() {
                 return this.$store.getters.shopProducts;
             },
+
         },
         methods: {
             addProducts(data) {
@@ -120,6 +122,8 @@
                     console.error(e.message);
                 })
             },
+
+
         }
     }
 </script>

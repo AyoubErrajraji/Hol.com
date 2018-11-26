@@ -25,7 +25,8 @@
 
                 <div class="col-md-12">
                     <img src="/img/beoordeling.jpg" style="width: 400px; height: 300px;" >
-                    <h5>€{{ product.reviews }}</h5>
+                    <!--<h5>{{ product.reviews }}</h5>-->
+                    <h2 v-for="review in product.reviews"> {{ review.star_count }} stars </h2>
                 </div>
             </div>
         </div>
