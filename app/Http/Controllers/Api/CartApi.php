@@ -2,29 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\User;
-use App\ShoppingCartItem;
-use Illuminate\Http\Request;
+use App\CartItem;
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\Cart;
+use App\product;
+use Illuminate\Http\Request;
 
-class ShoppingCartApi extends Controller
+
+class CartApi extends Controller
 {
-    public function show($id)
-    {
-        return User::with('shoppingcart')->find($id);
-    }
-
     public function store(Request $request)
     {
-        $ShoppingCartItem = ShoppingCartItem::create($request->all());
-        return response()->json($ShoppingCartItem, 201);
-    }
-
-    public function delete($id)
-    {
-        $ShoppingCartItem = ShoppingCartItem::find($id);
-        $ShoppingCartItem->delete();
-
-        return response()->json(null, 204);
+        // iterate through the products and store them into the database
+            CartItem::create()([
+                'product_id' => $request->id,
+                'cart_id' => $request->id(),
+            ]);
+        return back();
     }
 }
