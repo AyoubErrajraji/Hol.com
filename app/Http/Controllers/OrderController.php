@@ -15,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $result = Order::with('payment', 'products')->get();
+        return view('order.index', compact('result'));
     }
 
     /**

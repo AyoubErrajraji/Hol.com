@@ -46,6 +46,13 @@
                         </a>
                     </li>
                 @endcan
+                @can('view_orders')
+                    <li id="products">
+                        <a href="{{ url('orders')  }}">
+                            <i class="fa fa-archive"></i> <span>Bestellingen</span>
+                        </a>
+                    </li>
+                @endcan
                 @can('view_users')
                 <li id="users">
                     <a href="{{ url('users')  }}">

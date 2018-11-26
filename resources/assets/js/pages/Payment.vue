@@ -61,11 +61,11 @@
                                 <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
                             </div>
                             <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <a id="payment-button" type="submit" class="btn btn-lg btn-info btn-block" href="https://www.mollie.com/paymentscreen/testmode/?method=ideal&token=1860yl">
                                     <i class="fa fa-lock fa-lg"></i>&nbsp;
                                     <span id="payment-button-amount">Pay now</span>
                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
-                                </button>
+                                </a>
                             </div>
                         </form>
                     </div>

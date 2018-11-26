@@ -3,13 +3,13 @@
 
         <div class="col-md-12">
             <form>
-                <div class="col-xs-4">
+                <div class="col-md-4">
                     <input class="form-control" type="text" placeholder="Zoeken" v-model="search"/>
                 </div>
 
-                <div class="col-xs-3">
-                    <label for="Alles">Kies een filter:</label>
-                    <select id="Alles" v-model="order" v-on:change="addOrderBy(this.order)">
+                <div class="col-md-4">
+                    <select id="Alles" v-model="order" v-on:change="addOrderBy(this.order)" class="form-control">
+                        <option disabled value="id">Selecteer een filter</option>
                         <option value='{"orderBy": "id","order": "asc"}'>Alles</option>
                         <option value='{"orderBy": "title","order": "asc"}'>A-Z</option>
                         <option value='{"orderBy": "title","order": "desc"}'>Z-A</option>
@@ -21,13 +21,13 @@
                 <div class="col-xs-2">
                     <label class="control-label form-control">Prijs Bereik</label>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-1">
                     <div class="input-group">
                         <span class="input-group-addon">€</span>
                         <input class="form-control" type="text" placeholder="Minimale Prijs" v-model="minPrice"/>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-1">
                     <div class="input-group">
                         <span class="input-group-addon">€</span>
                         <input class="form-control" type="text" placeholder="Maximale Prijs" v-model="maxPrice"/>
