@@ -39,22 +39,15 @@
         methods: {
             addToCart(invId) {
                 this.$store.dispatch('addToCart', invId)
-            },
 
-            create() {
-                axios.post(`/api/CartItem/`),{
-                    userId: user_id,
-                    cartId: cart_id,
+                axios.post(`/api/cartitem/`,{
+                    productId: invId.id,
+                    cartId: 1,
                     completed: false
-                }.catch((e) => {
+                }).catch((e) => {
                     this.errorMessages.push(e);
                 })
             },
-
-            //@foreach($products as $product) {{ product.categories.name }} @endforeach
-
-
-
         },
         computed: {
             inCart() {
