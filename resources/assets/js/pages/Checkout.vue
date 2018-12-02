@@ -2,75 +2,93 @@
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="/action_page.php">
+                <form @submit.prevent="submit()" novalidate>
 
                     <div class="row">
                         <div class="col-50">
-                            <h3>Billing Address</h3>
-                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com">
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                            <label for="city"><i class="fa fa-institution"></i> City</label>
-                            <input type="text" id="city" name="city" placeholder="New York">
 
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="NY">
+                            <h1>Bestelling gegevens formulier invullen</h1>
+
+                            <label for="name"><i class="fa fa-user"></i>Naam</label>
+                            <input type="text" id="name" name="name" v-model="name"  v-validate="'required|name'"
+                                   :class="{'has-error': errors.has('name')}" placeholder="John M. Doe">
+
+                            <span v-show="errors.has('name')" class="alert-danger help-block">
+                                {{ errors.first('naam')}}</span>
+
+                            <label for="email"><i class="fa fa-envelope"></i>Email</label>
+                            <input type="text" id="email" name="email" v-model="email"  v-validate="'required|email'"
+                                   :class="{'has-error': errors.has('email')}" placeholder="JohnDoe@voorbeeld.com">
+
+                            <span v-show="errors.has('email')" class="alert-danger help-block">
+                                {{ errors.first('email')}}</span>
+
+                            <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
+                            <input type="text" id="address" name="address"  v-model="address" v-validate="'required|address'"
+                                   :class="{'has-error': errors.has('address')}" placeholder="Wijnhaven 999">
+
+                            <span v-show="errors.has('address')" class="alert-danger help-block">
+                                {{ errors.first('address')}}</span>
+
+                            <label for="city"><i class="fa fa-institution"></i>Woonplaats</label>
+                            <input type="text" id="city" name="city" v-model="city" v-validate="'required|city'"
+                                   :class="{'has-error': errors.has('city')}" placeholder="Rhoon">
+
+                            <span v-show="errors.has('address')" class="alert-danger help-block">
+                                {{ errors.first('city')}}</span>
+
+                                <label for="zip"><i class="fa fa-address-card-o"></i> Postcode</label>
+                                <input type="text" id="zip" name="zip" v-model="zip" v-validate="'required|zip'"
+                                       :class="{'has-error': errors.has('zip')}" placeholder="1234AM">
+
+                            <span v-show="errors.has('zip')" class="alert-danger help-block">
+                                {{ errors.first('zip')}}</span>
                                 </div>
-                                <div class="col-50">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001">
-                                </div>
+
                             </div>
-                        </div>
+                                <label>
 
-                        <div class="col-50">
-                            <h3>Payment</h3>
-                            <label for="fname">Accepted Cards</label>
-                            <div class="icon-container">
-                                <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                <i class="fa fa-cc-discover" style="color:orange;"></i>
-                            </div>
-                            <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                            <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                            <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                                <input type="checkbox" checked="checked" name="sameadr"> ik ga akkoord met de eisen die hol.com aan mij stelt.
+                            </label>
 
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
-                                </div>
-                                <div class="col-50">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <label>
-                        <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-                    </label>
-                    <router-link to="/payment"><input type="submit" value="Continue to checkout" class="btn"></router-link>
+                    <button @click="validate" class="btn">Bestellen</button>
                 </form>
-            </div>
+                </div>
         </div>
-
     </div>
 </template>
 
-<script>
+        <script>
+
+    import Vue from 'vue'
+    import VeeValidate from 'vee-validate'
+
+    Vue.use(VeeValidate);
+
     export default {
-        name: "Checkout"
+        name: "Checkout",
+        data () {
+            return {
+                email: '',
+                name: '',
+                address: '',
+                city: '',
+                zip: ''
+            }
+        },
+        methods: {
+            submit() {
+                if(!this.validate()) {
+                    alert('Gegevens ingediend.')
+                } else {
+                    alert('Gegevens zijn niet ingediend.')
+                }
+            },
+            validate() {
+                this.$validator.validateAll();
+                return this.errors.any()
+            }
+        }
     }
 </script>
 
@@ -103,7 +121,12 @@
     .col-75 {
         padding: 0 16px;
     }
-
+    .alert-danger {
+        color: red;
+    }
+    .has-error {
+        border-color: red;
+    }
     .container {
         background-color: #f2f2f2;
         padding: 5px 20px 15px 20px;
