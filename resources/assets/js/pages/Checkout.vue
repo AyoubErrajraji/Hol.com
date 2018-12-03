@@ -10,11 +10,11 @@
                             <h1>Bestelling gegevens formulier invullen</h1>
 
                             <label for="name"><i class="fa fa-user"></i>Naam</label>
-                            <input type="text" id="name" name="name" v-model="name"  v-validate="'required|name'"
-                                   :class="{'has-error': errors.has('name')}" placeholder="John M. Doe">
+                            <input type="text" id="name" name="name" v-model="name"  v-validate="'required'"
+                                   :class="{'has-error': errors.has('name')}" placeholder="John M.">
 
                             <span v-show="errors.has('name')" class="alert-danger help-block">
-                                {{ errors.first('naam')}}</span>
+                                {{ errors.first('name')}}</span>
 
                             <label for="email"><i class="fa fa-envelope"></i>Email</label>
                             <input type="text" id="email" name="email" v-model="email"  v-validate="'required|email'"
@@ -24,21 +24,21 @@
                                 {{ errors.first('email')}}</span>
 
                             <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="address" name="address"  v-model="address" v-validate="'required|address'"
+                            <input type="text" id="address" name="address"  v-model="address" v-validate="'required'"
                                    :class="{'has-error': errors.has('address')}" placeholder="Wijnhaven 999">
 
                             <span v-show="errors.has('address')" class="alert-danger help-block">
                                 {{ errors.first('address')}}</span>
 
                             <label for="city"><i class="fa fa-institution"></i>Woonplaats</label>
-                            <input type="text" id="city" name="city" v-model="city" v-validate="'required|city'"
+                            <input type="text" id="city" name="city" v-model="city" v-validate="'required'"
                                    :class="{'has-error': errors.has('city')}" placeholder="Rhoon">
 
                             <span v-show="errors.has('address')" class="alert-danger help-block">
                                 {{ errors.first('city')}}</span>
 
-                                <label for="zip"><i class="fa fa-address-card-o"></i> Postcode</label>
-                                <input type="text" id="zip" name="zip" v-model="zip" v-validate="'required|zip'"
+                            <label for="zip"><i class="fa fa-address-card-o"></i> Postcode</label>
+                            <input type="text" id="zip" name="zip" v-model="zip" v-validate="'required'"
                                        :class="{'has-error': errors.has('zip')}" placeholder="1234AM">
 
                             <span v-show="errors.has('zip')" class="alert-danger help-block">
