@@ -14,8 +14,7 @@
                         <div>
                             <h2 class="item-title"></h2>
                             <p class="item-description"></p>
-                            <b>Aantal:</b>
-                            <input type = "text" placeholder="1" class="item-quantity">
+                            <b>Aantal:</b> <input type="number" min="0" max="999" name="quantity" placeholder="999">
                             <span class="item-price"></span>
                             <button class="btn btn-sm btn-danger"v-on:click="removeFromCart(index)">Verwijder product</button>
 
@@ -219,11 +218,9 @@
     .item-quantity {
         max-width: 30px;
         padding: 8px 12px;
-        font-size: inherit;
         color: rgba(51, 58, 69, 0.8);
         border: 2px solid rgba(51, 58, 69, 0.1);
         border-radius: 3px;
-        text-align: center;
     }
     .item-price {
         margin-left: 20px;
