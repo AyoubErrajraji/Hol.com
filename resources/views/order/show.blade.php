@@ -51,7 +51,7 @@
                     <b>Factuur #{{ $result->id }}</b><br>
                     <br>
                     <b>Bestelling ID:</b> {{ $result->id }}<br>
-                    <b>Betaling verloopt op:</b> 2/22/2014<br>
+                    <b>Betaling verloopt op:</b> {{ $result->created_at->addWeeks(4)->format('d/m/y') }}<br>
                     <b>Account:</b> {{ $result->user->id }}
                 </div>
                 <!-- /.col -->
@@ -114,7 +114,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-6">
-                    <p class="lead">Prijs Voor 2/22/2014</p>
+                    <p class="lead">Betalen voor {{ $result->created_at->addWeeks(4)->format('d/m/y') }}</p>
 
                     <div class="table-responsive">
                         <table class="table">

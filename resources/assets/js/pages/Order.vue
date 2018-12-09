@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-        <div class="box">
+        <div class="box" v-if="orderLoaded">
             <div class="box-body">
 
                 <!-- title row -->
@@ -43,7 +43,7 @@
                         <b>Factuur #{{ order.id }}</b><br>
                         <br>
                         <b>Bestelling ID:</b> {{ order.id }}<br>
-                        <b>Betaling verloopt op:</b> 2/22/2014<br>
+                        <b>Betaling verloopt op:</b> {{ this.order.created_at | addMonth }}<br>
                         <b>Account:</b> {{ order.id }}
                     </div>
                     <!-- /.col -->
@@ -65,12 +65,12 @@
                             </thead>
                             <tbody>
 
-                            <tr v-for="(product,index) in order.products" v-bind:onload="addSubTotal(product)">
+                            <tr v-for="(product,index) in order.products">
                                 <td>{{ product.pivot.amount }}</td>
                                 <td>{{ product.title }}</td>
                                 <td>{{ product.id }}</td>
                                 <td>{{ product.body }}</td>
-                                <td>€{{ product.pivot.amount * product.price }} </td>
+                                <td>€{{ product.pivot.amount * product.price | formatPrice }} </td>
                             </tr>
 
                             </tbody>
@@ -96,17 +96,17 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-6">
-                        <p class="lead">Prijs Voor 2/22/2014</p>
+                        <p class="lead">Betalen voor {{ this.order.created_at | addMonth }}</p>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
                                     <th style="width:50%">Subtotaal:</th>
-                                    <td>€{{ subTotal }}</td>
+                                    <td>€{{ subTotal | formatPrice }}</td>
                                 </tr>
                                 <tr>
                                     <th>BTW (21%)</th>
-                                    <td>€{{ 0.21 * subTotal }}</td>
+                                    <td>€{{ 0.21 * subTotal | formatPrice }}</td>
                                 </tr>
                                 <tr>
                                     <th>Verzendkosten:</th>
@@ -114,7 +114,7 @@
                                 </tr>
                                 <tr>
                                     <th>Totaal:</th>
-                                    <td>€{{ 1.21 * subTotal }}</td>
+                                    <td>€{{ 1.21 * subTotal + 25 | formatPrice }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -157,6 +157,7 @@
                 subTotal: 0,
                 errorMessages: [],
                 order: null,
+                orderLoaded: false,
             }
         },
         created() {
@@ -166,20 +167,30 @@
             getOrder(id) {
                 axios.get(`/api/order/${id}`).then(result => {
                     this.order = result.data;
-                    this.calculateSubTotal();
+                    this.orderLoaded = true;
+
+                    var i;
+                    for (i = 0; i < this.order.products.length; i++){
+                        this.subTotal += this.order.products[i].pivot.amount * this.order.products[i].price;
+                    }
                 }).catch((e) => {
                     this.errorMessages.push(e);
                 })
             },
-            addSubTotal(product) {
-                this.subTotal += product.pivot.amount * product.price;
-            }
         },
         filters: {
             formatDate: function (value) {
                 if (value) {
-                    return moment(String(value)).format('MM/DD/YYYY')
+                    return moment(String(value)).format('DD/MM/YYYY')
                 }
+            },
+            formatPrice: function (value) {
+                let val = (value/1).toFixed(2).replace('.', ',')
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            },
+            addMonth: function (value) {
+                let newMonth = moment(value).add(4, 'weeks');
+                return moment(newMonth).format('DD/MM/YYYY')
             }
         }
     }
