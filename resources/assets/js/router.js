@@ -2,8 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from './pages/Home'
-import OrderHistory from './pages/OrderHistory'
-import Order from './pages/Order'
 import Product from './pages/Product'
 import Category from './pages/Category'
 import Cart from './pages/Cart'
@@ -22,18 +20,6 @@ export default new Router({
             name: 'Home',
             component: Home,
             meta: {description: 'Home'}
-        },
-        {
-            path: '/history/:id',
-            name: 'OrderHistory',
-            component: OrderHistory,
-            meta: {description: 'OrderHistory'}
-        },
-        {
-            path: '/order/:id',
-            name: 'Order',
-            component: Order,
-            meta: {description: 'Order'}
         },
         {
             path: '/product/:id',

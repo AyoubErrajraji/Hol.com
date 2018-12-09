@@ -34,7 +34,7 @@
             <tbody>
             @foreach($result as $order)
                 <tr>
-                    <td><a href="{{ route('orders.show', $order->id) }}">{{ $order->id }}</a></td>
+                    <td><a href="#">{{ $order->id }}</a></td>
                     <td>{{ $order->user->name }}</td>
                     <td>
                         @if($order->state->id == 1)

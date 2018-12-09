@@ -66,7 +66,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <router-link to="/history/{{ Auth::user()->id }}" class="btn btn-default btn-flat">Bestellingen</router-link>
+                                    <a href="#" class="btn btn-default btn-flat" disabled>Profile</a>
                                 </div>
                                 <div class="pull-right">
 

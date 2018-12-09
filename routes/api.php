@@ -34,7 +34,3 @@ Route::get('category/{id}', 'Api\CategoryApi@show');
 
 Route::get('settings/{id}', 'Api\SettingsApi@show');
 Route::put('settings', 'Api\SettingsApi@update');
-
-Route::get('user/{id}', 'Api\UserApi@show');
-
-Route::get('order/{id}', 'Api\OrderApi@show');

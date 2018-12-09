@@ -11,9 +11,6 @@ export default new Vuex.Store({
         inCart: [],
         categories: [],
         user: null,
-        userLoaded: false,
-        userDetails: [],
-        userDetailsLoaded: false,
         orderBy: 'id',
         order: 'asc',
         errorMessages: null,
@@ -21,23 +18,21 @@ export default new Vuex.Store({
     getters: {
         shopProducts: state => state.shopProducts,
         shopProductsLoaded: state => state.shopProductsLoaded,
-        userDetails: state => state.userDetails,
-        userDetailsLoaded: state => state.userDetailsLoaded,
         payments: state => state.payments,
         inCart: state => state.inCart,
         orderBy: state => state.orderBy,
         order: state => state.order,
         categories: state => state.categories,
-        user: state => state.user,
-        userLoaded: state => state.userLoaded,
+        user: state => {
+            return state.user;
+        },
     },
     mutations: {
         ADD_TO_CART(state, invProduct) { state.inCart.push(invProduct); },
         REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
         ADD_CATEGORIES(state, categories) { state.categories = categories; },
         ADD_PRODUCTS(state, products) { state.shopProducts = products; state.shopProductsLoaded= true;},
-        ADD_USER_DETAILS(state, details) { state.userDetails = details; state.userDetailsLoaded= true;},
-        ADD_USER(state, user) { state.user = user; state.userLoaded= true;},
+        ADD_USER(state, user) { state.user = user; },
         ADD_ORDERBY(state, orderby) { state.orderBy = orderby; },
         ADD_ORDER(state, order) { state.order = order; },
         ADD_PAYMENT(state, payments) {state.payments = payments; }
@@ -74,9 +69,6 @@ export default new Vuex.Store({
         addProducts(context, products) {
             context.commit('ADD_PRODUCTS', products);
 
-        },
-        addUserDetails(context, details) {
-            context.commit('ADD_USER_DETAILS', details);
         },
         addOrderBy(context, orderby) {
             context.commit('ADD_ORDERBY', orderby);
