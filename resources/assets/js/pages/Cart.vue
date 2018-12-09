@@ -1,6 +1,25 @@
 <template>
     <div id="app">
-        <h1 class="title">Winkelwagen: </h1>
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Winkelwagen</h3>
+                <div class="box-tools pull-right">
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
 
         <div v-for="(product,index) in inCart" v-bind:key="index">
             <h4><b>{{product.title}}</b></h4>
@@ -16,7 +35,9 @@
                             <p class="item-description"></p>
                             <b>Aantal:</b> <input type="number" min="0" max="999" name="quantity" placeholder="999">
                             <span class="item-price"></span>
-                            <button class="btn btn-sm btn-danger"v-on:click="inCart.splice(index, 1)">Verwijder product</button>
+                            <button class="btn btn-sm btn-danger" v-on:click="inCart.splice(index, 1)">Verwijder product</button>
+
+
 
                         </div>
                     </div>
@@ -25,16 +46,27 @@
                     </div>
                 </li>
             </ul>
-        </div>
+        </div>|
 
-        <h3 class="cart-line">
-            Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
-            BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span>
-            Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span>
-        </h3>
 
-        <router-link to="/"><button class="button1">< Verder met winkelen</button></router-link>
-        <router-link to="/checkout"><button  class="button2"> > Verder met bestellen</button></router-link>
+                            <div class="box-footer clearfix">
+                                <router-link to="/"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-primary pull-left">< Verder met winkelen</a></router-link>
+                                <router-link to="/checkout"><a href="javascript:void(0)" class="btn btn-sm btn-success pull-right"> > Verder met bestellen</a></router-link>
+
+
+                                <h1 class="cart-line">
+                                    Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
+                                    BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span>
+                                    Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span>
+                                </h1>
+                            </div>
+
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
 
     </div>
 
@@ -114,66 +146,19 @@
         padding: 30px;
     }
 
-    .title {
-        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-        font-size: 70px;
-        padding: 0px 0px;
-        text-align: left;
-        text-transform: uppercase;
-        text-rendering: optimizeLegibility;
-        color: #131313;
-        letter-spacing: -1px;
-        text-shadow:
-                1px -1px 0 #767676,
-                -1px 2px 1px #737272,
-                -2px 4px 1px #767474,
-                -3px 6px 1px #787777,
-                -4px 8px 1px #7b7a7a,
-                -5px 10px 1px #7f7d7d,
-                -6px 12px 1px #828181,
-                -7px 14px 1px #868585,
-                -8px 16px 1px #8b8a89,
-                -9px 18px 1px #8f8e8d,
-                -10px 20px 1px #949392,
-                -11px 22px 1px #999897,
-                -12px 24px 1px #9e9c9c,
-                -13px 26px 1px #a3a1a1,
-                -14px 28px 1px #a8a6a6,
-                -15px 30px 1px #adabab,
-                -16px 32px 1px #b2b1b0,
-                -17px 34px 1px #b7b6b5,
-                -18px 36px 1px #bcbbba,
-                -19px 38px 1px #c1bfbf,
-                -20px 40px 1px #c6c4c4,
-                -21px 42px 1px #cbc9c8,
-                -22px 44px 1px #cfcdcd,
-                -23px 46px 1px #d4d2d1,
-                -24px 48px 1px #d8d6d5,
-                -25px 50px 1px #dbdad9,
-                -26px 52px 1px #dfdddc,
-                -27px 54px 1px #e2e0df,
-                -28px 56px 1px #e4e3e2;
-    }
+
     .items {
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
-    .cart {
-        background: #fff;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-size: 16px;
-        color: #333a45;
-        border-radius: 3px;
-        padding: 30px;
-    }
     .cart-line {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 20px 0 0 0;
-        font-size: 150%;
+        margin: 7px 400px 0px 400px;
+        font-size: 130%;
         font-weight: bold;
         color: rgba(51, 58, 69, 0.8);
     }
@@ -194,10 +179,12 @@
     .item-preview {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
     .item-thumbnail {
         margin-right: 20px;
         border-radius: 3px;
+        justify-content: space-between;
     }
     .item-title {
         margin: 0 0 10px 0;

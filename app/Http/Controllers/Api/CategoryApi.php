@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Category;
 use App\Http\Controllers\Controller;
 
@@ -12,12 +13,12 @@ class CategoryApi extends Controller
         return Category::with('products')->get();
     }
 
+
     public function show($id)
     {
         return Category::with('products')->find($id);
 
     }
-
 //    public function show1($name){
 //        return Category::with('products')->find($name);
 //    }

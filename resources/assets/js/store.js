@@ -14,6 +14,7 @@ export default new Vuex.Store({
         order: 'asc',
 
     },
+
     getters: {
         shopProducts: state => state.shopProducts,
         shopProductsLoaded: state => state.shopProductsLoaded,
@@ -26,6 +27,7 @@ export default new Vuex.Store({
             return state.user;
         },
     },
+
     mutations: {
         ADD_TO_CART(state, invProduct) { state.inCart.push(invProduct); },
         REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
