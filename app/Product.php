@@ -16,6 +16,11 @@ class Product extends Model
         return $this->belongsToMany(Cart::class, 'cart_has__products');
     }
 
+    public function cartitem()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class);

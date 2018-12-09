@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -12,7 +13,7 @@ export default new Vuex.Store({
         user: null,
         orderBy: 'id',
         order: 'asc',
-
+        errorMessages: null,
     },
     getters: {
         shopProducts: state => state.shopProducts,
@@ -38,9 +39,25 @@ export default new Vuex.Store({
     },
     actions: {
         addToCart(context, invProduct) {
-            context.commit('ADD_TO_CART', invProduct);
+            axios.post(`/api/cartitem`,{
+                productId: invProduct.id,
+                cartId: 1,
+                completed: false
+            }).then(result => {
+                context.commit('ADD_TO_CART', result.data);
+            }).catch((e) => {
+                //
+            })
+
+        },
+        addToCartFromDb(context, invProduct) {
+                context.commit('ADD_TO_CART', invProduct);
         },
         removeFromCart(context, index) {
+            axios.delete(`/api/cartitem/${this.state.inCart[index].id}`).catch((e) => {
+                //
+            });
+
             context.commit('REMOVE_FROM_CART', index);
         },
         addUser(context, user) {
@@ -51,6 +68,7 @@ export default new Vuex.Store({
         },
         addProducts(context, products) {
             context.commit('ADD_PRODUCTS', products);
+
         },
         addOrderBy(context, orderby) {
             context.commit('ADD_ORDERBY', orderby);

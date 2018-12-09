@@ -7,8 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 
+
+
 class CartApi extends Controller
 {
+    public function index () {
+        return CartItem::with('product', 'cart')->get();
+    }
+
     public function store(Request $request)
     {
 
@@ -18,6 +24,22 @@ class CartApi extends Controller
 
         $cartItem->save();
 
+        return $cartItem;
+    }
+
+    public function delete($id)
+    {
+
+        $cartItem = CartItem::find($id);
+
+        $cartItem->delete();
+
         return back();
     }
+
+    public function show($id)
+    {
+        return Cart::with('product')->find($id);
+    }
+
 }

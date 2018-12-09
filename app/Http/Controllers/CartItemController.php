@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class CartItemController extends Controller
 {
     /**
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,6 +39,10 @@ class CartItemController extends Controller
         //
     }
 
+    public function delete(CartItem $cartItem)
+    {
+
+    }
     /**
      * Display the specified resource.
      *

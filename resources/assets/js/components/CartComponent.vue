@@ -7,14 +7,14 @@
         </a>
         <ul class="dropdown-menu">
 
-            <li class="user-body" v-for="(product,index) in inCart" v-bind:key="index">
+            <li class="user-body" v-for="(cartitem,index) in inCart" v-bind:key="index">
                 <div class="pull-left">
-                    <img :src="product.image" class="cart-item-image">
-                    {{ product.title }}
-                    <p><b> €{{ product.price + ",-" }} </b></p>
+                    <img :src="cartitem.product.image" class="cart-item-image">
+                    {{ cartitem.product.title }}
+                    <p><b> €{{ cartitem.product.price + ",-" }} </b></p>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-sm btn-danger"v-on:click="inCart.splice(index, 1)">Verwijder product</button>
+                    <button class="btn btn-sm btn-danger"v-on:click="removeFromCart(index)">Verwijder product</button>
                 </div>
 
             </li>
@@ -29,9 +29,15 @@
 </template>
 
 <script>
+    import axios from 'axios'
 
         export default {
             name: 'cart-component',
+            data(){
+                return{
+                    products:[]
+                }
+            },
             computed: {
                 _user() {
                     if (this.user) {
@@ -63,6 +69,17 @@
                 }).catch((e) => {
                     this.errorMessages.push(e);
                 })
+
+
+                axios.get(`/api/cartitem`).then(result => {
+                    var i;
+                    for (i=0; i<result.data.length; i++){
+                        this.addToCart(result.data[i]);
+                    }
+                }).catch((e) => {
+                    this.errorMessages.push(e);
+                })
+
             },
             methods: {
                 addProducts(data) {
@@ -72,7 +89,10 @@
                 removeFromCart(invId) {
                     this.$store.dispatch('removeFromCart', invId)
                         .then(() => console.log('Cart has been removed from the store state'));
-
+                },
+                addToCart(invId) {
+                    this.$store.dispatch('addToCartFromDb', invId)
+                        .then(() => console.log('bladibla'));
 
                 },
             },

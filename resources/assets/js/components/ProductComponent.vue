@@ -39,14 +39,6 @@
         methods: {
             addToCart(invId) {
                 this.$store.dispatch('addToCart', invId)
-
-                axios.post(`/api/cartitem/`,{
-                    productId: invId.id,
-                    cartId: 1,
-                    completed: false
-                }).catch((e) => {
-                    this.errorMessages.push(e);
-                })
             },
         },
         computed: {

@@ -2,27 +2,24 @@
     <div id="app">
         <h1 class="title">Winkelwagen: </h1>
 
-        <div v-for="(product,index) in inCart" v-bind:key="index">
-            <h4><b>{{product.title}}</b></h4>
+        <div v-for="(cartitem,index) in inCart" v-bind:key="index">
+            <h4><b>{{cartitem.product.title}}</b></h4>
 
-             <h4><b>Prijs: €{{product.price + ",-"}}</b></h4>
+             <h4><b>Prijs: €{{cartitem.product.price + ",-"}}</b></h4>
 
             <ul class="items">
                 <li class="item">
                     <div class="item-preview">
-                        <img :src="product.image" class="cart-item-image item-thumbnail">
+                        <img :src="cartitem.product.image" class="cart-item-image item-thumbnail">
                         <div>
                             <h2 class="item-title"></h2>
                             <p class="item-description"></p>
                             <b>Aantal:</b>
                             <input type = "text" placeholder="1" class="item-quantity">
                             <span class="item-price"></span>
-                            <button class="btn btn-sm btn-danger"v-on:click="inCart.splice(index, 1)">Verwijder product</button>
+                            <button class="btn btn-sm btn-danger"v-on:click="removeFromCart(index)">Verwijder product</button>
 
                         </div>
-                    </div>
-                    <div>
-
                     </div>
                 </li>
             </ul>
@@ -45,49 +42,56 @@
     import CartComponent from '../components/CartComponent'
     import axios from 'axios'
 
-    export default {
-        name: "Cart",
-        components: {
-            CartComponent
-        },
-
-        computed: {
-            totalBTW() {
-                return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return Math.round(sum + item.price + item.price * (0.21))
-
-                },0)
+        export default {
+            name: "Cart",
+            data(){
+                return{
+                    products:[]
+                }
             },
-
-            BTW(){
-                return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return Math.round(sum + item.price * (0.21))
-
-                },0)
+            components: {
+                CartComponent
             },
+            computed: {
+                totalBTW() {
+                    return this.$store.getters.inCart.reduce(function (sum, item) {
+                        return Math.round(sum + item.price + item.price * (0.21))
 
-            Subtotal() {
-                return this.$store.getters.inCart.reduce(function (sum, item) {
-                    return Math.round(sum + item.price)
+                    }, 0)
+                },
 
-                }, 0)
+                BTW() {
+                    return this.$store.getters.inCart.reduce(function (sum, item) {
+                        return Math.round(sum + item.price * (0.21))
+
+                    }, 0)
+                },
+
+                Subtotal() {
+                    return this.$store.getters.inCart.reduce(function (sum, item) {
+                        return Math.round(sum + item.price)
+
+                    }, 0)
+                },
+
+                inCart() {
+                    return this.$store.getters.inCart;
+                },
+                user() {
+                    return this.$store.getters.user
+                },
             },
-
-            inCart() {
-                return this.$store.getters.inCart;
-            },
-            user() {
-                return this.$store.getters.user
-            },
-
             mounted() {
                 this.$store.dispatch('addUser', this._user)
                     .then(() => console.log('User added to store state'));
             },
 
-            created() {
-                axios.get(`/api/products/${this.orderBy}`).then(result => {
-                    this.addProducts(result.data);
+            created(){
+                axios.get(`/api/cartitem`).then(result => {
+                    var i;
+                    for (i=0; i<result.data.length; i++){
+                        this.addToCart(result.data[i]);
+                    }
                 }).catch((e) => {
                     this.errorMessages.push(e);
                 })
@@ -100,11 +104,14 @@
                 },
                 removeFromCart(invId) {
                     this.$store.dispatch('removeFromCart', invId);
+                },
+                addToCart(invId) {
+                    this.$store.dispatch('addToCartFromDb', invId)
+                        .then(() => console.log('bladibla'));
 
                 },
-            }
+            },
         }
-    }
 
 </script>
 
