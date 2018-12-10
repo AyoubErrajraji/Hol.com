@@ -74,7 +74,7 @@
                 axios.get(`/api/cartitem`).then(result => {
                     var i;
                     for (i=0; i<result.data.length; i++){
-                        this.addToCart(result.data[i]);
+                        this.addToCartFromDb(result.data[i]);
                     }
                 }).catch((e) => {
                     this.errorMessages.push(e);
@@ -91,12 +91,13 @@
                         .then(() => console.log('Cart has been removed from the store state'));
                 },
                 addToCart(invId) {
+                    this.$store.dispatch('addToCart', invId);
+                },
+                addToCartFromDb(invId) {
                     this.$store.dispatch('addToCartFromDb', invId)
                         .then(() => console.log('bladibla'));
-
                 },
-            },
-    }
+    },}
 </script>
 
 <style>
