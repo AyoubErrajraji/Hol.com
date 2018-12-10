@@ -17,7 +17,7 @@
                                 {{ errors.first('name')}}</span>
 
                             <label for="email"><i class="fa fa-envelope"></i>Email</label>
-                            <input type="text" id="email" name="email" v-model="email"  v-validate="'required|email'"
+                            <input type="text" id="email" name="email" v-model="email" v-validate="'required|email'"
                                    :class="{'has-error': errors.has('email')}" placeholder="JohnDoe@voorbeeld.com">
 
                             <span v-show="errors.has('email')" class="alert-danger help-block">
