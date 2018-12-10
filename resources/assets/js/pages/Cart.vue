@@ -84,25 +84,19 @@
             computed: {
                 totalBTW() {
                     return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.price + item.price * (0.21))
-
+                        return Math.round(sum + item.product.price + item.product.price * (0.21))
                     }, 0)
                 },
-
                 BTW() {
                     return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.price * (0.21))
-
+                        return Math.round(sum + item.product.price * (0.21))
                     }, 0)
                 },
-
                 Subtotal() {
                     return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.price)
-
+                        return Math.round(sum + item.product.price)
                     }, 0)
                 },
-
                 inCart() {
                     return this.$store.getters.inCart;
                 },
@@ -119,7 +113,7 @@
                 axios.get(`/api/cartitem`).then(result => {
                     var i;
                     for (i=0; i<result.data.length; i++){
-                        this.addToCart(result.data[i]);
+                        this.addToCartFromDb(result.data[i]);
                     }
                 }).catch((e) => {
                     this.errorMessages.push(e);
