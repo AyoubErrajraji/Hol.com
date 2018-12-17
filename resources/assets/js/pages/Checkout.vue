@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form @submit.prevent="submit()" novalidate>
+                <form method = "post" action="http://localhost:8000/succes" @submit.prevent="submit()" novalidate>
 
                     <div class="row">
                         <div class="col-50">
@@ -80,6 +80,7 @@
             submit() {
                 if(!this.validate()) {
                     alert('Gegevens ingediend.')
+                    window.location = "http://localhost:8000/succes"
                 } else {
                     alert('Gegevens zijn niet ingediend.')
                 }

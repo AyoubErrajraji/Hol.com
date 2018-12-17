@@ -2,7 +2,7 @@
 
     <li class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
-        <a class="dropdown-toggle" data-toggle="dropdown">
+        <a class ="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
             <i class="fa fa-shopping-cart"></i> ({{ inCart.length }})
         </a>
         <ul class="dropdown-menu">
@@ -14,7 +14,7 @@
                     <p><b> €{{ cartitem.product.price + ",-" }} </b></p>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-sm btn-danger"v-on:click="removeFromCart(index)">Verwijder product</button>
+                    <button class="btn btn-sm btn-danger" aria-expanded="true" v-on:click="removeFromCart(index) ">Verwijder product</button>
                 </div>
 
             </li>
@@ -39,6 +39,7 @@
                 }
             },
             computed: {
+
                 _user() {
                     if (this.user) {
                         return JSON.parse(this.user)
@@ -46,6 +47,7 @@
                         return null
                     }
                 },
+
                 inCart() {
                     return this.$store.getters.inCart;
                 },
@@ -64,11 +66,12 @@
                     .then(() => console.log('User added to store state'));
             },
             created() {
+
                 axios.get(`/api/products/${this.orderBy}`).then(result => {
                     this.addProducts(result.data);
                 }).catch((e) => {
                     this.errorMessages.push(e);
-                })
+                });
 
 
                 axios.get(`/api/cartitem`).then(result => {
@@ -78,8 +81,7 @@
                     }
                 }).catch((e) => {
                     this.errorMessages.push(e);
-                })
-
+                });
             },
             methods: {
                 addProducts(data) {
@@ -95,7 +97,9 @@
                         .then(() => console.log('bladibla'));
 
                 },
+
             },
+
     }
 </script>
 

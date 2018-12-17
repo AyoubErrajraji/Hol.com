@@ -47,7 +47,7 @@ const app = new Vue({
     },
 
     created() {
-        axios.get(`/api/categories`, {
+        axios.get(`/api/categories/id`, {
         }).then(result => {
             this.categories = result.data;
             this.$store.dispatch('addCategories', this.categories)

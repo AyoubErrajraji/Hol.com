@@ -98,9 +98,10 @@
             console.log(to.params.id);
             this.id = to.params.id;
             console.log(this.$route.params.id);
-            axios.get(`/api/category/${to.params.id}`, {
+            let order = JSON.parse(this.order);
+            axios.get(`/api/category/${to.params.id}/${order.orderBy}/${order.order}`, {
             }).then(result => {
-                this.productList = result.data.products;
+                this.productList = result.data;
                 console.log(this.productList);
             }).catch((e) => {
                 this.errorMessages.push(e);
@@ -136,9 +137,9 @@
                 let order = JSON.parse(this.order);
                 this.$store.dispatch('addOrderBy', order.orderBy);
 
-                axios.get(`/api/products/${order.orderBy}/${order.order}`).then(result => {
+                axios.get(`/api/category/${this.id}/${order.orderBy}/${order.order}`).then(result => {
                     this.addProducts(result.data);
-
+                    this.productList = result.data;
                 }).catch((e) => {
                     this.errorMessages.push(e);
                     console.error(e.message);

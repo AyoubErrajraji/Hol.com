@@ -29,8 +29,9 @@ Route::get('cartitem/{id}', 'Api\CartApi@show');
 Route::post('cartitem', 'Api\CartApi@store');
 Route::delete('cartitem/{id}', 'Api\CartApi@delete');
 
-Route::get('categories', 'Api\CategoryApi@index');
+Route::get('categories/{orderBy}/{order?}', 'Api\CategoryApi@index');
 Route::get('category/{id}', 'Api\CategoryApi@show');
+Route::get('category/{id}/{orderBy}/{order?}', 'Api\CategoryApi@showOrder');
 
 Route::get('settings/{id}', 'Api\SettingsApi@show');
 Route::put('settings', 'Api\SettingsApi@update');

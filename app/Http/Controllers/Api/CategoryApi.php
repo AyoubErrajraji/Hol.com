@@ -8,15 +8,19 @@ use App\Http\Controllers\Controller;
 
 class CategoryApi extends Controller
 {
-    public function index()
+    public function index($orderBy, $order = 'asc')
     {
-        return Category::with('products')->get();
+        return Category::with('products')->orderBy($orderBy, $order)->get();
     }
 
-
-    public function show($id)
+    public function show($id = 1)
     {
         return Category::with('products')->find($id);
+
+    }
+    public function showOrder($id, $orderBy, $order = 'asc')
+    {
+        return Category::find($id)->products()->orderBy($orderBy, $order)->get();
 
     }
 //    public function show1($name){
