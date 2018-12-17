@@ -51,6 +51,7 @@ export default new Vuex.Store({
                 cartId: 1,
                 completed: false
             }).then(result => {
+                result.data.product = invProduct;
                 context.commit('ADD_TO_CART', result.data);
             }).catch((e) => {
                 //

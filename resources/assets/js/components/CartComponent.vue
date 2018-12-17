@@ -1,8 +1,8 @@
 <template>
 
-    <li class="dropdown user user-menu">
+    <li id="dropdown-cart" class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
-        <a class ="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-shopping-cart"></i> ({{ inCart.length }})
         </a>
         <ul class="dropdown-menu">
@@ -77,7 +77,7 @@
                 axios.get(`/api/cartitem`).then(result => {
                     var i;
                     for (i=0; i<result.data.length; i++){
-                        this.addToCart(result.data[i]);
+                        this.addToCartFromDb(result.data[i]);
                     }
                 }).catch((e) => {
                     this.errorMessages.push(e);
@@ -91,16 +91,24 @@
                 removeFromCart(invId) {
                     this.$store.dispatch('removeFromCart', invId)
                         .then(() => console.log('Cart has been removed from the store state'));
+
+                    setTimeout(function(){
+                        $("#dropdown-cart").addClass("open");
+                    }, 200);
                 },
                 addToCart(invId) {
+                    this.$store.dispatch('addToCart', invId);
+                },
+                addToCartFromDb(invId) {
                     this.$store.dispatch('addToCartFromDb', invId)
                         .then(() => console.log('bladibla'));
-
                 },
+
 
             },
 
-    }
+    },}
+
 </script>
 
 <style>

@@ -63,6 +63,19 @@
                 errorMessages: []
             }
         },
+        beforeRouteUpdate(to) {
+
+            console.log(to.params.id);
+            this.id = to.params.id;
+            console.log(this.$route.params.id);
+            axios.get(`/api/product/${to.params.id}`, {
+            }).then(result => {
+                this.product = result.data;
+            }).catch((e) => {
+                this.errorMessages.push(e);
+            });
+        },
+
         methods: {
             addToCart(invId) {
                 this.$store.dispatch('addToCart', invId);
