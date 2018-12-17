@@ -1,8 +1,8 @@
 <template>
 
-    <li class="dropdown user user-menu">
+    <li id="dropdown-cart" class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
-        <a class="dropdown-toggle" data-toggle="dropdown">
+        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-shopping-cart"></i> ({{ inCart.length }})
         </a>
         <ul class="dropdown-menu">
@@ -89,6 +89,10 @@
                 removeFromCart(invId) {
                     this.$store.dispatch('removeFromCart', invId)
                         .then(() => console.log('Cart has been removed from the store state'));
+
+                    setTimeout(function(){
+                        $("#dropdown-cart").addClass("open");
+                    }, 200);
                 },
                 addToCart(invId) {
                     this.$store.dispatch('addToCart', invId);
