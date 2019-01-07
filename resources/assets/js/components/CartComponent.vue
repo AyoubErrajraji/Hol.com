@@ -92,7 +92,7 @@
 
                     setTimeout(function(){
                         $("#dropdown-cart").addClass("open");
-                    }, 200);
+                    }, 5);
                 },
                 addToCart(invId) {
                     this.$store.dispatch('addToCart', invId);

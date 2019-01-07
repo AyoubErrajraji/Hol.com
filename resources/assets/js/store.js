@@ -10,6 +10,8 @@ export default new Vuex.Store({
         shopProductsLoaded: false,
         inCart: [],
         categories: [],
+        wishlist: [],
+        wishlist_loaded: false,
         user: null,
         userLoaded: false,
         userDetails: [],
@@ -26,6 +28,9 @@ export default new Vuex.Store({
         userDetailsLoaded: state => state.userDetailsLoaded,
         payments: state => state.payments,
         inCart: state => state.inCart,
+        inWishList: state => {
+            return state.wishlist;
+        },
         orderBy: state => state.orderBy,
         order: state => state.order,
         categories: state => state.categories,
@@ -36,6 +41,19 @@ export default new Vuex.Store({
     mutations: {
         ADD_TO_CART(state, invProduct) { state.inCart.push(invProduct); },
         REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
+        ADD_TO_WISHLIST(state, wishlist) {
+            state.wishlist = wishlist;
+        },
+        ADD_WISHLIST_ITEM(state, item) {
+            state.wishlist.push(item);
+        },
+        REMOVE_WISHLIST_ITEM(state, item_id) {
+            const index = state.wishlist.wishlist.indexOf(state.wishlist.wishlist.find(item => item.id === item_id));
+            if(index > -1) {
+                state.wishlist.wishlist.splice(index, 1);
+            }
+        },
+        //REMOVE_FROM_WISHLIST(state, index) { state.inWishList.splice(index, 1); },
         ADD_CATEGORIES(state, categories) { state.categories = categories; },
         ADD_PRODUCTS(state, products) { state.shopProducts = products; state.shopProductsLoaded= true;},
         ADD_USER_DETAILS(state, details) { state.userDetails = details; state.userDetailsLoaded= true;},
@@ -67,6 +85,38 @@ export default new Vuex.Store({
             });
 
             context.commit('REMOVE_FROM_CART', index);
+        },
+
+        addWishlist(context, wishlist) {
+            context.commit('ADD_TO_WISHLIST', wishlist)
+        },
+        addToWishList(context, id) {
+            axios.post('/api/wishlistitem', {
+                productId: id,
+                wishlistId: 1,
+                completed: false,
+            }).then(result => {
+                result.data.product = id;
+                context.commit('ADD_WISHLIST_ITEM', result.data);
+            }).catch((e) => {
+                //
+            })
+
+        },
+        deleteWishlistItem(context, id) {
+            context.commit('REMOVE_WISHLIST_ITEM', id);
+        },
+
+        addToWishListFromDb(context, invProduct) {
+            context.commit('ADD_WISHLIST_ITEM', invProduct);
+        },
+
+        removeFromWishList(context, index) {
+            axios.delete(`/api/wishlistitem/${this.state.inWishList[index].id}`).catch((e) => {
+                //
+            });
+
+            context.commit('REMOVE_FROM_WISHLIST', index);
         },
         addUser(context, user) {
             context.commit('ADD_USER', user);

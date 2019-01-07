@@ -20,6 +20,8 @@
             <ul class="nav navbar-nav">
 
                 <!-- Tasks Menu -->
+                <router-link to="/wishlist"><a href="javascript:void(0)" class="btn btn-apricot"> WishList </a></router-link>
+
                 <cart-component user="{{ Auth::user() }}"></cart-component>
 
                 @if (Auth::guest())
