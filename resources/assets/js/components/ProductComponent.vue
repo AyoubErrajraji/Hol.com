@@ -1,12 +1,12 @@
 <template>
     <div class="col-md-4">
-        <div class="box box-solid " style="height: 450px;">
+        <div class="box box-solid " style="height: 400px;">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ product.title }}</h3>
                 <h4 v-for="category in product.categories"> {{ category.name }} </h4>
             </div>
             <div class="box-body text-center">
-                <img :src="product.image " style="height: 250px;">
+                <img :src="product.image " class="fixed-img">
                 <p>€{{product.price}},-</p>
                 <hr>
 
@@ -84,5 +84,10 @@
     .btn-blueberry {
         background-color: #6B7A8F;
         color: white;
+    }
+
+    .fixed-img {
+        max-width: 100%;
+        height: 200px;
     }
 </style>
