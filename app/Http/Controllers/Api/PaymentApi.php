@@ -53,7 +53,7 @@ class PaymentApi extends Controller
                 ],
                 "method" => IDEAL,
                 "description" => "Order: #{$orderId}",
-                "redirectUrl" => "https://localhost:8000/succes",
+                "redirectUrl" => "http://localhost:8000/succes",
                //"webhookUrl"  => "https://webshop.example.org/mollie-webhook/",
                 "issuer"      => $selectedIssuerId, // test the issuer
                 "metadata" => [
