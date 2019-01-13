@@ -8,11 +8,10 @@ use App\Http\Controllers\Controller;
 
 class CategoryApi extends Controller
 {
-    public function index()
+    public function index($orderBy, $order = 'asc')
     {
-        return Category::with('products')->get();
+        return Category::with('products')->orderBy($orderBy, $order)->get();
     }
-
 
     public function show($id)
     {

@@ -46,7 +46,7 @@
 
 
                             <label for="IBAN"><i class="fas fa-piggy-bank"></i> IBAN</label>
-                            <input type="text" id="IBAN" name="IBAN" v-model="IBAN" v-validate="'required|min:18'"
+                            <input type="text" id="IBAN" name="IBAN" v-model="IBAN" v-validate="'required|min:22'"
                                    :class="{'has-error': errors.has('IBAN')}" placeholder="NL19 RABO 0108 6286 XX">
 
                             <span v-show="errors.has('IBAN')" class="alert-danger help-block">
