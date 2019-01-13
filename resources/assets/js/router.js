@@ -49,7 +49,7 @@ export default new Router({
             meta: {description: 'Category'}
         },
         {
-            path: '/cart/',
+            path: '/cart',
             name: 'Cart',
             component: Cart,
             meta: {description: 'Cart'}
