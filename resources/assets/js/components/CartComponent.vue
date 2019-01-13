@@ -110,7 +110,7 @@
 
                     setTimeout(function () {
                         $("#dropdown-cart").addClass("open");
-                    }, 5);
+                    }, 200);
                 },
                 addToCart(invId) {
                     this.$store.dispatch('addToCart', invId);

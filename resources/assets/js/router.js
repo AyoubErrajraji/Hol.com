@@ -11,7 +11,6 @@ import Checkout from './pages/Checkout'
 import Payment from './pages/Payment'
 import NotFound from './pages/NotFound'
 import Succes from './pages/Succes'
-import WishList from './pages/WishList'
 
 Vue.use(Router);
 
@@ -75,18 +74,10 @@ export default new Router({
         },
 
         {
-            path: '/wishlist',
-            name: 'WishList',
-            component: WishList,
-            meta: {description: 'WishList'}
-        },
-
-        {
             path: '*',
             name: 'NotFound',
             component: NotFound,
             meta: {description: '404 | Page not found'}
         }
-
     ]
 });

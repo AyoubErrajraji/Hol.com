@@ -12,9 +12,6 @@
 
                 <button class="btn btn-apricot" @click="addToCart(product)">Winkelwagen</button>
                 <router-link class="btn btn-blueberry" :to="{name: 'Product', params: {id: product.id} }">Lees meer</router-link>
-                <button class="btn btn-apricot" @click="addToWishList">Wishlist</button>
-                <!--<router-link to="/wishlist"><a href="javascript:void(0)" class="btn btn-apricot"> WishList </a></router-link>-->
-<!---->
 
             </div>
         </div>
@@ -23,6 +20,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         name: "ProductComponent",
         props: {
@@ -53,17 +52,10 @@
             addToCart(invId) {
                 this.$store.dispatch('addToCart', invId)
             },
-            addToWishList() {
-                this.$store.dispatch('addToWishList', this.product.id)
-            },
         },
         computed: {
             inCart() {
                 return this.$store.getters.inCart;
-            },
-
-            inWishList() {
-                return this.$store.getters.inWishList;
             },
         },
     }
@@ -73,12 +65,6 @@
     .btn-apricot {
         background-color: #F7882F;
         color: white;
-    }
-
-    .btn-aprico {
-        background-color: #F39C12;
-        color: white;
-        height: 50px;
     }
 
     .btn-blueberry {

@@ -3,38 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
-use App\WishList;
 use App\WishListItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class WishListApi extends Controller
 {
-    public function index () {
-        return WishListItem::with('wishlistitems','wishlist')->get();
+    public function show($id)
+    {
+        return User::with('wishlist')->find($id);
     }
+
     public function store(Request $request)
     {
-        $wishlistitem = new WishListItem();
-        $wishlistitem->product_id = $request->productId;
-        $wishlistitem->wishlist_id = $request->wishlistId;
-
-        $wishlistitem->save();
-
-        return $wishlistitem;
+        $WishListItem = WishListItem::create($request->all());
+        return response()->json($WishListItem, 201);
     }
 
     public function delete($id)
     {
-        $wishlistitem = WishListItem::find($id);
+        $WishListItem = WishListItem::find($id);
+        $WishListItem->delete();
 
-        $wishlistitem->delete();
-
-        return back();
-    }
-
-    public function show($id)
-    {
-        return User::with('wishlistitems', 'wishlistitems.product')->find($id);
+        return response()->json(null, 204);
     }
 }

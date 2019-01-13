@@ -16,7 +16,6 @@ import UserComponent from './components/UserComponent';
 import CategoryComponent from './components/CategoryComponent';
 import BreadcrumbComponent from './components/BreadcrumbComponent';
 import SettingsComponent from './components/SettingsComponent';
-import WishListComponent from './components/WishListComponent';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,8 +37,7 @@ const app = new Vue({
         UserComponent,
         CategoryComponent,
         BreadcrumbComponent,
-        SettingsComponent,
-        WishListComponent
+        SettingsComponent
     },
     data(){
         return  {

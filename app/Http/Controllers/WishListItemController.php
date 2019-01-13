@@ -38,18 +38,13 @@ class WishListItemController extends Controller
         //
     }
 
-    public function delete(WishListItem $wishlistitem)
-    {
-
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\WishListItem  $wishListItem
      * @return \Illuminate\Http\Response
      */
-    public function show(WishListItem $wishlistitem)
+    public function show(WishListItem $wishListItem)
     {
         //
     }
@@ -60,7 +55,7 @@ class WishListItemController extends Controller
      * @param  \App\WishListItem  $wishListItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(WishListItem $wishlistitem)
+    public function edit(WishListItem $wishListItem)
     {
         //
     }
@@ -72,7 +67,7 @@ class WishListItemController extends Controller
      * @param  \App\WishListItem  $wishListItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WishListItem $wishlistitem)
+    public function update(Request $request, WishListItem $wishListItem)
     {
         //
     }
@@ -83,7 +78,7 @@ class WishListItemController extends Controller
      * @param  \App\WishListItem  $wishListItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WishListItem $wishlistitem)
+    public function destroy(WishListItem $wishListItem)
     {
         //
     }

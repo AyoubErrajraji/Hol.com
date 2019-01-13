@@ -8,11 +8,11 @@ class WishListItem extends Model
 {
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasOne(Product::class);
     }
 
     public function wishlist()
     {
-        return $this->belongsTo(WishList::class);
+        return $this->hasOne(WishList::class);
     }
 }
