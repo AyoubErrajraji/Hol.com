@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Winkelwagen</h3>
@@ -9,6 +9,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="table-responsive">
+
                     <table class="table no-margin">
                         <thead>
                         <tr>
@@ -58,79 +59,130 @@
     </div>
     </div>
 
+
+                    <div v-for="(cartitem,index) in inCart" v-bind:key="index">
+                        <h4><b>{{cartitem.product.title}}</b></h4>
+
+                        <h4><b>Prijs: €{{cartitem.product.price }}</b></h4>
+
+                        <ul class="items">
+                            <li class="item">
+                                <div class="item-preview">
+                                    <img :src="cartitem.product.image" class="cart-item-image item-thumbnail">
+                                    <div>
+                                        <h2 class="item-title"></h2>
+                                        <p class="item-description"></p>
+                                        <b>Aantal:</b> <input type="number" min="0" max="999" name="quantity" :value="cartitem.amount" disabled>
+                                        <span class="item-price"></span>
+                                        <button class="btn btn-sm btn-danger"v-on:click="removeFromCart(index)">Verwijder product</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box-footer clearfix">
+                        <router-link to="/"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-primary">< Verder met winkelen</a></router-link>
+                        <router-link to="/checkout"><a href="javascript:void(0)" class="btn btn-sm btn-success pull-right"> > Verder met bestellen</a></router-link>
+
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span></td>
+                                <td>BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span></td>
+                                <td>Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </template>
 
 <script>
-    import CartComponent from '../components/CartComponent'
-    import axios from 'axios'
 
-        export default {
-            name: "Cart",
-            data(){
-                return{
-                    products:[]
+    export default {
+        name: 'Cart',
+        data(){
+            return{
+                products:[]
+            }
+        },
+        computed: {
+            _user() {
+                if (this.user) {
+                    return JSON.parse(this.user)
+                } else {
+                    return null
                 }
             },
-            components: {
-                CartComponent
+            inCart() {
+                return this.$store.getters.inCart;
             },
-            computed: {
-                totalBTW() {
-                    return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.product.price + item.product.price * (0.21))
-                    }, 0)
-                },
-                BTW() {
-                    return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.product.price * (0.21))
-                    }, 0)
-                },
-                Subtotal() {
-                    return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.product.price)
-                    }, 0)
-                },
-                inCart() {
-                    return this.$store.getters.inCart;
-                },
-                user() {
-                    return this.$store.getters.user
-                },
+            orderBy() {
+                return this.$store.getters.orderBy;
             },
-            mounted() {
-                this.$store.dispatch('addUser', this._user)
-                    .then(() => console.log('User added to store state'));
+            totalBTW() {
+                var i;
+                var totalPrice = 0;
+                for (i = 0; i < this.inCart.length; i++) {
+                    totalPrice += this.inCart[i].amount * this.inCart[i].product.price;
+                }
+                return totalPrice;
             },
+            BTW() {
+                var i;
+                var totalPrice = 0;
+                for (i = 0; i < this.inCart.length; i++) {
+                    totalPrice += this.inCart[i].amount * this.inCart[i].product.price;
+                }
+                return (totalPrice * 0.21);
+            },
+            Subtotal() {
+                var i;
+                var totalPrice = 0;
+                for (i = 0; i < this.inCart.length; i++) {
+                    totalPrice += this.inCart[i].amount * this.inCart[i].product.price;
+                }
+                return totalPrice - (totalPrice * 0.21);
+            },
+        },
+        mounted() {
+            this.$store.dispatch('addUser', this._user)
+                .then(() => console.log('User added to store state'));
+        },
+        methods: {
+            addProducts(data) {
+                this.$store.dispatch('addProducts', data)
+                    .then(() => console.log('Products added to store state'));
+            },
+            removeFromCart(invId) {
+                this.$store.dispatch('removeFromCart', invId)
+                    .then(() => console.log('Cart has been removed from the store state'));
 
-            created(){
-                axios.get(`/api/cartitem`).then(result => {
-                    var i;
-                    for (i=0; i<result.data.length; i++){
-                        this.addToCartFromDb(result.data[i]);
-                    }
-                }).catch((e) => {
-                    this.errorMessages.push(e);
-                })
+                setTimeout(function(){
+                    $("#dropdown-cart").addClass("open");
+                }, 200);
             },
-
-            methods: {
-                addProducts(data) {
-                    this.$store.dispatch('addProducts', data)
-                        .then(() => console.log('Products added to store state'));
-                },
-                removeFromCart(invId) {
-                    this.$store.dispatch('removeFromCart', invId);
-                },
-                addToCart(invId) {
-                    this.$store.dispatch('addToCartFromDb', invId)
-                        .then(() => console.log('bladibla'));
-
-                },
+            addToCart(invId) {
+                this.$store.dispatch('addToCart', invId);
             },
-        }
-
+            addToCartFromDb(invId) {
+                this.$store.dispatch('addToCartFromDb', invId);
+            },
+            inCartAmount() {
+                var i;
+                var amount = 0;
+                for (i = 0; i < this.inCart.length; i++) {
+                    amount += this.inCart[i].amount * 1;
+                }
+                return amount;
+            },
+        },
+    }
 </script>
 
 <style scoped>

@@ -3,18 +3,24 @@
     <li id="dropdown-cart" class="dropdown user user-menu">
         <!-- Menu Toggle Button -->
         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-shopping-cart"></i> ({{ inCart.length }})
+            <i class="fa fa-shopping-cart"></i> ({{ inCartAmount() }})
         </a>
         <ul class="dropdown-menu">
 
-            <li class="user-body" v-for="(cartitem,index) in inCart" v-bind:key="index">
+            <li class="user-body" v-for="(cartitem,index) in inCart" v-bind:key="index" v-if="cartitem.amount > 0">
                 <div class="pull-left">
                     <img :src="cartitem.product.image" class="cart-item-image">
+
                     {{ cartitem.product.title }}
                     <p><b> €{{ cartitem.product.price + ",-" }} </b></p>
                 </div>
                 <div class="pull-right">
                     <button class="btn btn-sm btn-danger" aria-expanded="true" v-on:click="removeFromCart(index) ">Verwijder product</button>
+
+                    <button class="btn btn-sm btn-danger"v-on:click="removeFromCart(index)">Verwijder product</button>
+                    <p>{{ cartitem.amount }}x {{ cartitem.product.title }}</p>
+                    <p><b> €{{ cartitem.product.price + ",-" }} </b></p>
+
                 </div>
 
             </li>
@@ -56,11 +62,19 @@
                 orderBy() {
                     return this.$store.getters.orderBy;
                 },
-
                 total() {
+
                     return this.$store.getters.inCart.reduce(function (sum, item) {
                         return Math.round(sum + item.product.price + item.product.price * (0.21))
                     }, 0)
+
+                    var i;
+                    var totalPrice = 0;
+                    for (i = 0; i < this.inCart.length; i++) {
+                        totalPrice += this.inCart[i].amount * this.inCart[i].product.price;
+                    }
+                    return totalPrice;
+
                 },
             },
             mounted() {
@@ -102,13 +116,25 @@
                     this.$store.dispatch('addToCart', invId);
                 },
                 addToCartFromDb(invId) {
-                    this.$store.dispatch('addToCartFromDb', invId)
-                        .then(() => console.log('bladibla'));
+                    this.$store.dispatch('addToCartFromDb', invId);
                 },
+
 
 
             },
     }
+
+
+                inCartAmount() {
+                    var i;
+                    var amount = 0;
+                    for (i = 0; i < this.inCart.length; i++) {
+                        amount += this.inCart[i].amount * 1;
+                    }
+                    return amount;
+                },
+            },
+        }
 
 </script>
 
