@@ -27,6 +27,7 @@ Route::get('payment/test', 'Api\PaymentApi@create');
 Route::get('cartitem', 'Api\CartApi@index');
 Route::get('cartitem/{id}', 'Api\CartApi@show');
 Route::post('cartitem', 'Api\CartApi@store');
+Route::put('cartitem', 'Api\CartApi@update');
 Route::delete('cartitem/{id}', 'Api\CartApi@delete');
 
 Route::get('categories', 'Api\CategoryApi@index');
