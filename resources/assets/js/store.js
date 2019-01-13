@@ -46,32 +46,16 @@ export default new Vuex.Store({
     },
     actions: {
         addToCart(context, invProduct) {
-            var i;
-            var bool = false;
-            for (i = 0; i < this.state.inCart.length; i++) {
-                if (this.state.inCart[i].product.id === invProduct.id) {
-                    bool = true;
-                    axios.put(`/api/cartitem`,{
-                        id: this.state.inCart[i].id,
-                        amount: 1,
-                    });
-                    this.state.inCart[i].amount++
-                }
-            }
-
-            if (!bool) {
-                axios.post(`/api/cartitem`,{
-                    productId: invProduct.id,
-                    cartId: 1,
-                    amount: 1,
-                    completed: false
-                }).then(result => {
-                    result.data.product = invProduct;
-                    context.commit('ADD_TO_CART', result.data);
-                }).catch((e) => {
-                    //
-                })
-            }
+            axios.post(`/api/cartitem`,{
+                productId: invProduct.id,
+                cartId: 1,
+                completed: false
+            }).then(result => {
+                result.data.product = invProduct;
+                context.commit('ADD_TO_CART', result.data);
+            }).catch((e) => {
+                //
+            })
 
         },
         addToCartFromDb(context, invProduct) {
