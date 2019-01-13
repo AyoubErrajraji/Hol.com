@@ -90,6 +90,7 @@
             submit() {
                 if(!this.validate()) {
                     alert('Gegevens ingediend.')
+                    windows.location.href = "http://localhost:8000/api/payment/test"
                 } else {
                     alert('Gegevens zijn niet ingediend.')
                 }

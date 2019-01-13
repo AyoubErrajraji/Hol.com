@@ -19,6 +19,13 @@ class CategoryApi extends Controller
         return Category::with('products')->find($id);
 
     }
+    public function showOrder($id, $orderBy, $order = 'asc')
+    {
+        return Category::find($id)->products()->orderBy($orderBy, $order)->get();
+
+    }
+
+
 //    public function show1($name){
 //        return Category::with('products')->find($name);
 //    }

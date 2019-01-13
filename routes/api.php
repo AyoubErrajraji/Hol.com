@@ -37,6 +37,8 @@ Route::delete('wishlistitem/{id}', 'Api\WishListApi@delete');
 
 Route::get('categories', 'Api\CategoryApi@index');
 Route::get('category/{id}', 'Api\CategoryApi@show');
+Route::get('category/{id}/{orderBy}/{order?}', 'Api\CategoryApi@showOrder');
+
 
 Route::get('settings/{id}', 'Api\SettingsApi@show');
 Route::put('settings', 'Api\SettingsApi@update');
