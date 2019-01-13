@@ -89,10 +89,11 @@
         methods: {
             submit() {
                 if(!this.validate()) {
-                    alert('Gegevens ingediend.')
-                    windows.location.href = "http://localhost:8000/api/payment/test"
+
+                    window.location.href = "http://localhost:8000/api/payment/test"
+                    return confirm('Zijn uw gegevens juist ingevuld?');
                 } else {
-                    alert('Gegevens zijn niet ingediend.')
+                    alert('Gegevens zijn niet ingediend.');
                 }
             },
             validate() {
