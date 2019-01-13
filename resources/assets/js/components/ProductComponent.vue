@@ -13,7 +13,7 @@
                 <button class="btn btn-apricot" @click="addToCart(product)">Winkelwagen</button>
                 <router-link class="btn btn-blueberry" :to="{name: 'Product', params: {id: product.id} }">Lees meer</router-link>
                 <button class="btn btn-apricot" @click="addToWishList">AddToWishlist</button>
-                <router-link to="/watchlist"><a href="javascript:void(0)" class="btn btn-apricot"> WishList </a></router-link>
+                <router-link to="/wishlist"><a href="javascript:void(0)" class="btn btn-apricot"> WishList </a></router-link>
 
 
             </div>

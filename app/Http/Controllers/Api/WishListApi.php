@@ -15,7 +15,7 @@ class WishListApi extends Controller
     }
     public function store(Request $request)
     {
-        $wishlistitem = new WishlistItem();
+        $wishlistitem = new WishListItem();
         $wishlistitem->product_id = $request->productId;
         $wishlistitem->wishlist_id = $request->wishlistId;
 
@@ -27,9 +27,10 @@ class WishListApi extends Controller
     public function delete($id)
     {
         $wishlistitem = WishListItem::find($id);
+
         $wishlistitem->delete();
 
-        return response()->json(null, 204);
+        return back();
     }
 
     public function show($id)

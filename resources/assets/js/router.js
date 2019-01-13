@@ -75,7 +75,7 @@ export default new Router({
         },
 
         {
-            path: '/wishlist',
+            path: '/wishlist/',
             name: 'WishList',
             component: WishList,
             meta: {description: 'WishList'}

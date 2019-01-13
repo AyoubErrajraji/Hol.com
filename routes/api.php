@@ -29,7 +29,7 @@ Route::get('cartitem/{id}', 'Api\CartApi@show');
 Route::post('cartitem', 'Api\CartApi@store');
 Route::delete('cartitem/{id}', 'Api\CartApi@delete');
 
-//Route::get('wishlistitem', 'Api\WishListApi@index');
+Route::get('wishlistitem', 'Api\WishListApi@index');
 Route::get('wishlistitem/{id}', 'Api\WishListApi@show');
 Route::post('wishlistitem', 'Api\WishListApi@store');
 Route::delete('wishlistitem/{id}', 'Api\WishListApi@delete');

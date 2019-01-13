@@ -47,13 +47,8 @@ export default new Vuex.Store({
         ADD_WISHLIST_ITEM(state, item) {
             state.wishlist.push(item);
         },
-        REMOVE_WISHLIST_ITEM(state, item_id) {
-            const index = state.wishlist.wishlist.indexOf(state.wishlist.wishlist.find(item => item.id === item_id));
-            if(index > -1) {
-                state.wishlist.wishlist.splice(index, 1);
-            }
-        },
-        //REMOVE_FROM_WISHLIST(state, index) { state.inWishList.splice(index, 1); },
+        REMOVE_WISHLIST_ITEM(state, index) { state.wishlist.splice(index, 1); },
+        REMOVE_FROM_WISHLIST(state, index) { state.wishlist.splice(index, 1); },
         ADD_CATEGORIES(state, categories) { state.categories = categories; },
         ADD_PRODUCTS(state, products) { state.shopProducts = products; state.shopProductsLoaded= true;},
         ADD_USER_DETAILS(state, details) { state.userDetails = details; state.userDetailsLoaded= true;},
@@ -87,7 +82,7 @@ export default new Vuex.Store({
             context.commit('REMOVE_FROM_CART', index);
         },
 
-        addWishlist(context, wishlist) {
+        addWishList(context, wishlist) {
             context.commit('ADD_TO_WISHLIST', wishlist)
         },
         addToWishList(context, id) {
@@ -103,7 +98,7 @@ export default new Vuex.Store({
             })
 
         },
-        deleteWishlistItem(context, id) {
+        deleteWishListItem(context, id) {
             context.commit('REMOVE_WISHLIST_ITEM', id);
         },
 
@@ -112,7 +107,7 @@ export default new Vuex.Store({
         },
 
         removeFromWishList(context, index) {
-            axios.delete(`/api/wishlistitem/${this.state.inWishList[index].id}`).catch((e) => {
+            axios.delete(`/api/wishlistitem/${this.state.wishlist[index].id}`).catch((e) => {
                 //
             });
 

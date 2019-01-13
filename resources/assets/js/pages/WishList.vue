@@ -106,7 +106,8 @@
                     .then(() => console.log('Products added to store state'));
             },
             removeFromWishList(invId) {
-                this.$store.dispatch('removeFromWishList', invId);
+                this.$store.dispatch('removeFromWishList', invId)
+                    .then(() => console.log('aaaaaaa'));
             },
             addToWishList(invId) {
                 this.$store.dispatch('addToWishList', invId)
