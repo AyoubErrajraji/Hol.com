@@ -59,7 +59,7 @@ export default new Vuex.Store({
 
         },
         addToCartFromDb(context, invProduct) {
-                context.commit('ADD_TO_CART', invProduct);
+            context.commit('ADD_TO_CART', invProduct);
         },
         removeFromCart(context, index) {
             axios.delete(`/api/cartitem/${this.state.inCart[index].id}`).catch((e) => {

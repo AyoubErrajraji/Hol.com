@@ -22,6 +22,8 @@ class CreateCartItemsTable extends Migration
                 ->onDelete('cascade');
             $table->unsignedInteger('product_id');
 
+            $table->integer('amount');
+
             $table->foreign('product_id')
                 ->references('id')->on('products')
                 ->onDelete('cascade');

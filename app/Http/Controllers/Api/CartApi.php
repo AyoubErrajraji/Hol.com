@@ -22,6 +22,19 @@ class CartApi extends Controller
         $cartItem->product_id = $request->productId;
         $cartItem->cart_id = $request->cartId;
 
+        $cartItem->amount = $request->amount;
+
+        $cartItem->save();
+
+        return $cartItem;
+    }
+
+    public function update(Request $request)
+    {
+
+        $cartItem = CartItem::find($request->id);
+        $cartItem->amount += $request->amount;
+
         $cartItem->save();
 
         return $cartItem;
