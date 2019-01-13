@@ -4,6 +4,13 @@
             <i :class="[isAdInWatchlist ? 'fa fa-heart' : 'far fa-heart']" aria-hidden="true"></i>
         </a>
     </div>
+
+    <li id="dropdown-cart" class="dropdown user user-menu">
+        <!-- Menu Toggle Button -->
+        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-star"></i> ({{ inCart.length }})
+        </a>
+        <ul class="dropdown-menu">
 </template>
 
 <script>

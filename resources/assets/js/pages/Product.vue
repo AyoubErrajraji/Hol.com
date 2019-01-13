@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <img :src="product.image" style="width: 300px; height: 200px;"/>
+                    <img :src="product.image" style="width:auto; max-width:300px;"/>
                 </div>
 
                 <div class="col-md-6">
@@ -105,5 +105,10 @@
     .btn-blueberry {
         background-color: #6B7A8F;
         color: white;
+    }
+    img.image-fix{
+        width:auto;
+        max-width:300px;
+
     }
 </style>

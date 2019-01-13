@@ -20,6 +20,7 @@
             <ul class="nav navbar-nav">
 
                 <!-- Tasks Menu -->
+                <add-to-watch-list-component user="{{ Auth::user()  }}"></add-to-watch-list-component>
                 <cart-component user="{{ Auth::user() }}"></cart-component>
 
                 @if (Auth::guest())
@@ -92,3 +93,9 @@
         </div>
     </nav>
 </header>
+<script>
+    import AddToWatchListComponent from "../../assets/js/components/AddToWatchListComponent";
+    export default {
+        components: {AddToWatchListComponent}
+    }
+</script>

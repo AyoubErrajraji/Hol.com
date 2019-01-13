@@ -42,7 +42,7 @@ class PaymentApi extends Controller
 
             $selectedIssuerId = "ideal_INGBNL2A";
             $currency = "EUR";
-            $amount = "100.00";
+            $amount = "7.50";
 
             $mollie = new MollieApiClient();
             $mollie->setApiKey("test_WD2sWvUWWRqBKfUTy5VS5t8f623ad3");
@@ -53,7 +53,7 @@ class PaymentApi extends Controller
                 ],
                 "method" => IDEAL,
                 "description" => "Order: #{$orderId}",
-                "redirectUrl" => "https://hol.agilepixels.com",
+                "redirectUrl" => "http://localhost:8000/succes",
                //"webhookUrl"  => "https://webshop.example.org/mollie-webhook/",
                 "issuer"      => $selectedIssuerId, // test the issuer
                 "metadata" => [

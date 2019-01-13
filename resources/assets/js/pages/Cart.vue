@@ -41,20 +41,15 @@
                     </div>
                 </li>
             </ul>
-        </div>|
-
-
-                            <div class="box-footer clearfix">
-                                <router-link to="/"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-primary pull-left">< Verder met winkelen</a></router-link>
-                                <router-link to="/checkout"><a href="javascript:void(0)" class="btn btn-sm btn-success pull-right"> > Verder met bestellen</a></router-link>
-
-
-                                <h1 class="cart-line">
-                                    Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
-                                    BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span>
-                                    Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span>
-                                </h1>
-                            </div>
+        </div>|<div class="box-footer clearfix">
+                            <router-link to="/"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-primary pull-left">< Verder met winkelen</a></router-link>
+                            <router-link to="/checkout"><a href="javascript:void(0)" class="btn btn-sm btn-success pull-right"> > Verder met bestellen</a></router-link>
+                            <h1 class="cart-line">
+                                Subtotaal: €{{Subtotal}},- <span class="cart-price cart-total"></span>
+                                BTW(21%): €{{BTW}},- <span class="cart-price cart-total"></span>
+                                Totaal: €{{totalBTW}},-<span class="cart-price cart-total"></span>
+                            </h1>
+                        </div>
 
         </tr>
         </tbody>

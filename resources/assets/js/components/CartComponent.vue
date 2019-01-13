@@ -22,6 +22,8 @@
                 Totaal: €<b>{{total}},-</b>
                 <router-link to="/cart">Bekijk hele winkelwagen</router-link>
             </li>
+
+
         </ul>
     </li>
 
@@ -33,9 +35,9 @@
 
         export default {
             name: 'cart-component',
-            data(){
-                return{
-                    products:[]
+            data() {
+                return {
+                    products: []
                 }
             },
             computed: {
@@ -57,7 +59,7 @@
 
                 total() {
                     return this.$store.getters.inCart.reduce(function (sum, item) {
-                        return Math.round(sum + item.price)
+                        return Math.round(sum + item.product.price + item.product.price * (0.21))
                     }, 0)
                 },
             },
@@ -76,7 +78,7 @@
 
                 axios.get(`/api/cartitem`).then(result => {
                     var i;
-                    for (i=0; i<result.data.length; i++){
+                    for (i = 0; i < result.data.length; i++) {
                         this.addToCartFromDb(result.data[i]);
                     }
                 }).catch((e) => {
@@ -92,7 +94,7 @@
                     this.$store.dispatch('removeFromCart', invId)
                         .then(() => console.log('Cart has been removed from the store state'));
 
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $("#dropdown-cart").addClass("open");
                     }, 200);
                 },
@@ -106,8 +108,7 @@
 
 
             },
-
-    },}
+    }
 
 </script>
 

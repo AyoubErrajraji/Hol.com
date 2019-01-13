@@ -13,7 +13,6 @@
                         </h2>
                     </div>
                     <!-- /.col -->
-
                 </div>
                 <!-- info row -->
                 <div class="row invoice-info">
